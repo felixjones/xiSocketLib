@@ -1,0 +1,12 @@
+#Ignore .sdf
+*.sdf
+
+#Ignore .user .suo
+*.user
+*.suo
+
+#Ignore VS build files
+Debug/
+ipch/
+Release/
+x64/
