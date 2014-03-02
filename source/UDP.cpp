@@ -161,12 +161,8 @@ byteLen_t xiUDP::BroadcastBuffer( const char * const buffer, const int32_t buffe
 	int targetLength = ( int )sizeof( target );
 	memset( &target, 0, sizeof( target ) );
 	
-#ifdef __WIN_API__
-	target.sin_family = AF_INET;
-	target.sin_addr.s_addr = INADDR_BROADCAST;
-#elif defined( __POSIX__ )
-    //memcpy( &target.sin_addr.s_addr, &targetInfo.address.protocolV4[0], sizeof( target.sin_addr.s_addr ) );
-#endif
+    target.sin_family = AF_INET;
+    target.sin_addr.s_addr = INADDR_BROADCAST;
 
 	target.sin_port = ( uint16_t )Endian::HostToNetworkUnsigned( port, sizeof( port ) );
 
