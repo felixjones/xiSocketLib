@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vs2010", "vs2010.vcxproj", "{5C324DCF-C583-4A09-AE75-77B7B79C7CF0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xiSock", "vs2010.vcxproj", "{5C324DCF-C583-4A09-AE75-77B7B79C7CF0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example.01.server", "..\examples\example.01.server\example.01.server.vcxproj", "{F64443F8-0F10-4A49-88B4-9B2413852AA7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example.01.client", "..\examples\example.01.client\example.01.client.vcxproj", "{5A6F1129-BCBB-4DA4-8BF6-ED158EDA7879}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +23,20 @@ Global
 		{5C324DCF-C583-4A09-AE75-77B7B79C7CF0}.Release|Win32.Build.0 = Release|Win32
 		{5C324DCF-C583-4A09-AE75-77B7B79C7CF0}.Release|x64.ActiveCfg = Release|x64
 		{5C324DCF-C583-4A09-AE75-77B7B79C7CF0}.Release|x64.Build.0 = Release|x64
+		{F64443F8-0F10-4A49-88B4-9B2413852AA7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F64443F8-0F10-4A49-88B4-9B2413852AA7}.Debug|Win32.Build.0 = Debug|Win32
+		{F64443F8-0F10-4A49-88B4-9B2413852AA7}.Debug|x64.ActiveCfg = Debug|x64
+		{F64443F8-0F10-4A49-88B4-9B2413852AA7}.Debug|x64.Build.0 = Debug|x64
+		{F64443F8-0F10-4A49-88B4-9B2413852AA7}.Release|Win32.ActiveCfg = Release|Win32
+		{F64443F8-0F10-4A49-88B4-9B2413852AA7}.Release|Win32.Build.0 = Release|Win32
+		{F64443F8-0F10-4A49-88B4-9B2413852AA7}.Release|x64.ActiveCfg = Release|x64
+		{F64443F8-0F10-4A49-88B4-9B2413852AA7}.Release|x64.Build.0 = Release|x64
+		{5A6F1129-BCBB-4DA4-8BF6-ED158EDA7879}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5A6F1129-BCBB-4DA4-8BF6-ED158EDA7879}.Debug|Win32.Build.0 = Debug|Win32
+		{5A6F1129-BCBB-4DA4-8BF6-ED158EDA7879}.Debug|x64.ActiveCfg = Debug|Win32
+		{5A6F1129-BCBB-4DA4-8BF6-ED158EDA7879}.Release|Win32.ActiveCfg = Release|Win32
+		{5A6F1129-BCBB-4DA4-8BF6-ED158EDA7879}.Release|Win32.Build.0 = Release|Win32
+		{5A6F1129-BCBB-4DA4-8BF6-ED158EDA7879}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

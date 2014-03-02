@@ -3,7 +3,7 @@
 
 #include "Socket.h"
 
-#ifndef SOCKET_ERROR
+#if defined( __POSIX__ ) && !defined( SOCKET_ERROR )
     #define SOCKET_ERROR    ( -1 )
 #endif
 
