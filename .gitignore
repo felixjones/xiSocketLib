@@ -5,6 +5,9 @@
 *.user
 *.suo
 
+#Ignore lockfile
+*.opensdf
+
 #Ignore VS build files
 Debug/
 ipch/
