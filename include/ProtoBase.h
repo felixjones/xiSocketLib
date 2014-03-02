@@ -3,6 +3,10 @@
 
 #include "Socket.h"
 
+#ifndef SOCKET_ERROR
+    #define SOCKET_ERROR    ( -1 )
+#endif
+
 /*
 ================================================================================
 

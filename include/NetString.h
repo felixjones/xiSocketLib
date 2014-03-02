@@ -1,6 +1,7 @@
 #ifndef __NET_STRING_H__
 #define __NET_STRING_H__
 
+#include <stddef.h>
 #include <stdint.h>
 
 /*

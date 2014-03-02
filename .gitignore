@@ -8,6 +8,12 @@
 #Ignore lockfile
 *.opensdf
 
+#Ignore mac .DS_Store
+*.DS_Store
+
+#Ignore xcode user
+*felixjones.xcuserdatad/*
+
 #Ignore VS build files
 Debug/
 ipch/

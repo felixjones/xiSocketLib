@@ -15,12 +15,8 @@
     #define INVALID_SOCKET  ( -1 )
 #endif
 
-#ifndef SOCKET_ERROR
-    #define SOCKET_ERROR    ( -1 )
-#endif
-
 #ifdef __WIN_API__
-typedef int socklen_t;
+    typedef int socklen_t;
 #endif
 
 /*

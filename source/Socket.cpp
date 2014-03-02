@@ -4,16 +4,18 @@
 #include "Endian.h"
 
 #ifdef __WIN_API__
-#pragma comment( lib, "Ws2_32.lib" )
+    #pragma comment( lib, "Ws2_32.lib" )
 
-#include <WinSock2.h>
+    #include <WinSock2.h>
 
-namespace WinSock {
-	uint32_t	winsockReferenceCount = 0;
-	WSADATA		winSockData;
-}
+    namespace WinSock {
+        uint32_t	winsockReferenceCount = 0;
+        WSADATA		winSockData;
+    }
 
-using namespace WinSock;
+    using namespace WinSock;
+#elif defined( __POSIX__ )
+    #include <string.h>
 #endif
 
 /*
