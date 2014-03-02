@@ -41,6 +41,7 @@
     <ProjectGuid>{5C324DCF-C583-4A09-AE75-77B7B79C7CF0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>vs2010</RootNamespace>
+    <ProjectName>xiSock</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
