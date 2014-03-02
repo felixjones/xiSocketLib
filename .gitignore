@@ -12,7 +12,7 @@
 *.DS_Store
 
 #Ignore xcode user
-*felixjones.xcuserdatad/*
+xcuserdata
 
 #Ignore VS build files
 Debug/
