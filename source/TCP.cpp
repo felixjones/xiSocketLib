@@ -7,6 +7,10 @@
 	#include <arpa/inet.h>
     #include <sys/socket.h>
     #include <string.h>
+
+	#if !defined( SOCKET_ERROR )
+		#define SOCKET_ERROR    ( -1 )
+	#endif
 #elif defined( __WIN_API__ )
 	#include <WinSock2.h>
 #endif

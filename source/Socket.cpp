@@ -18,6 +18,8 @@
     #include <string.h>
 #endif
 
+const uint16_t	xiSocket::PORT_ANY = 0;
+
 /*
 ====================
 xiSocket::xiSocket

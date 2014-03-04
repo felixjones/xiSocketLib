@@ -24,7 +24,7 @@ int main( int argc, char ** argv ) {
 
 	if ( tcpSocket ) {
 		// Print that the socket has successfully opened
-		printf( "Server started on port %u\n", SERVER_PORT );
+		printf( "Server started on port %u\n", tcpSocket->GetPort() );
 	}
 
 	while ( tcpSocket && isRunning ) {

@@ -8,8 +8,6 @@
 
 #define BUFFER_LEN	( 80 )
 #define BUFFER_STR	( "%79[0-9a-zA-Z.: ]s\n0" )
-#define SERVER_PORT	( 27000 )
-#define CLIENT_PORT	( 27001 )
 
 void CopyInputToBuffers( const char * const inputBuffer, char * const outIP, char * const outPort, char * const outCommand );
 

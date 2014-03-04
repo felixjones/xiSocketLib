@@ -11,6 +11,10 @@
     #include <string.h>
 
     #define closesocket( x )    close( x )
+
+	#if !defined( SOCKET_ERROR )
+		#define SOCKET_ERROR    ( -1 )
+	#endif
 #elif defined( __WIN_API__ )
 	#include <WinSock2.h>
 #endif
@@ -189,4 +193,21 @@ xiProtoBase::SetSendBufferLength
 */
 void xiProtoBase::SetSendBufferLength( const int32_t length ) {
 	setsockopt( nativeHandle, SOL_SOCKET, SO_SNDBUF, ( const char * )&length, sizeof( int ) );
+}
+
+/*
+====================
+xiProtoBase::GetPort
+
+	Returns the bound port of this socket
+====================
+*/
+uint16_t xiProtoBase::GetPort() const {
+	sockaddr_in addressInfo;
+	int infoLen = sizeof( addressInfo );
+	if ( getsockname( nativeHandle, ( sockaddr * )&addressInfo, &infoLen ) != -1 ) {
+		return ( uint16_t )Endian::NetworkToHost( addressInfo.sin_port, sizeof( addressInfo.sin_port ) );
+	}
+	
+	return 0;
 }

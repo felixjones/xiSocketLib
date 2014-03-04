@@ -3,10 +3,6 @@
 
 #include "Socket.h"
 
-#if defined( __POSIX__ ) && !defined( SOCKET_ERROR )
-    #define SOCKET_ERROR    ( -1 )
-#endif
-
 /*
 ================================================================================
 
@@ -17,10 +13,11 @@
 */
 class xiProtoBase : public xiSocket {
 public:
-	bool	SetBlocking( const bool blocking );
-	bool	SetBroadcasting( const bool doBroadcast );
-	void	SetReceiveBufferLength( const int32_t length );
-	void	SetSendBufferLength( const int32_t length );
+	bool		SetBlocking( const bool blocking );
+	bool		SetBroadcasting( const bool doBroadcast );
+	void		SetReceiveBufferLength( const int32_t length );
+	void		SetSendBufferLength( const int32_t length );
+	uint16_t	GetPort() const;
 protected:
                             xiProtoBase();
 	virtual                 ~xiProtoBase();

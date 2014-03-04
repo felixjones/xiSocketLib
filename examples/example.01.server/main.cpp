@@ -24,7 +24,7 @@ int main( int argc, char ** argv ) {
 
 	if ( udpSocket ) {
 		// Print that the socket has successfully opened
-		printf( "Server started on port %u\n", SERVER_PORT );
+		printf( "Server started on port %u\n", udpSocket->GetPort() );
 	}
 
 	while ( udpSocket && isRunning ) {

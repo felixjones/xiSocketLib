@@ -48,6 +48,8 @@ public:
 
 		uint16_t	port;
 	};
+
+	static const uint16_t	PORT_ANY;
 protected:
 	socketHandle_t	nativeHandle;
 };

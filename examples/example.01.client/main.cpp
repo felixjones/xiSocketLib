@@ -8,8 +8,6 @@
 
 #define BUFFER_LEN	( 80 )
 #define BUFFER_STR	( "%79[0-9a-zA-Z.: ]s\n0" )
-#define SERVER_PORT	( 27000 )
-#define CLIENT_PORT	( 27001 )
 
 void CopyInputToBuffers( const char * const inputBuffer, char * const outIP, char * const outPort, char * const outCommand );
 
@@ -26,11 +24,11 @@ int main( int argc, char ** argv ) {
 	bool tutorial = true; // Display the tutorial
 
 	// We can create the client on any port, but with some operating systems we need to bind a port to be able to listen to it
-	xiUDP * const udpSocket = xiUDP::CreateOnPort( CLIENT_PORT );
+	xiUDP * const udpSocket = xiUDP::CreateOnPort( xiSocket::PORT_ANY );
 	
 	if ( udpSocket ) {
 		// Notify that we have successfully opened a socket
-		printf( "Client started on port %u\n", CLIENT_PORT );
+		printf( "Client started on port %u\n", udpSocket->GetPort() );
 	}
 
 	while ( udpSocket && isRunning ) {
