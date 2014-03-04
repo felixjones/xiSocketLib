@@ -84,11 +84,11 @@ xiTCPListen::Listen
 	Returns a new xiTCP socket for communicating on new connections
 ====================
 */
-xiTCP * xiTCPListen::Listen() {
+xiTCP * xiTCPListen::Listen( addressInfo_s * const senderInfo ) {
 	const int listenStatus = listen( nativeHandle, 1 );
 	if ( !listenStatus ) {
 		// worked, open connection
-		xiTCP * const newConnection = CreateOnSocket( nativeHandle );
+		xiTCP * const newConnection = CreateOnSocket( nativeHandle, senderInfo );
 
 		return newConnection;
 	} else {
@@ -106,9 +106,9 @@ xiTCPListen::CreateOnSocket
 	The native handle is given to the method, as opposed to created by the method
 ====================
 */
-xiTCP * xiTCPListen::CreateOnSocket( const socketHandle_t _nativeHandle ) {
+xiTCP * xiTCPListen::CreateOnSocket( const socketHandle_t _nativeHandle, addressInfo_s * const senderInfo ) {
 	xiTCP * const self = new xiTCP();
-	self->Accept( _nativeHandle );
+	self->Accept( _nativeHandle, senderInfo );
 
 	if ( self->status == STATUS_INVALID ) {
 		delete( self );
@@ -170,11 +170,26 @@ xiTCP::Accept
 	This method is "accepts" the socket as being bound by the listen socket
 ====================
 */
-void xiTCP::Accept( const socketHandle_t _nativeHandle ) {
-	nativeHandle = accept( _nativeHandle, nullptr, nullptr );
+void xiTCP::Accept( const socketHandle_t _nativeHandle, addressInfo_s * const senderInfo ) {
+	sockaddr_in target;
+	int targetLength = ( int )sizeof( target );
+	memset( &target, 0, sizeof( target ) );
+	
+	nativeHandle = accept( _nativeHandle, ( sockaddr * )&target, &targetLength );
 
 	if ( nativeHandle == INVALID_SOCKET ) {
 		status = STATUS_INVALID;
+	} else {
+#ifdef __WIN_API__
+		senderInfo->address.protocolV4[0] = target.sin_addr.S_un.S_un_b.s_b1;
+		senderInfo->address.protocolV4[1] = target.sin_addr.S_un.S_un_b.s_b2;
+		senderInfo->address.protocolV4[2] = target.sin_addr.S_un.S_un_b.s_b3;
+		senderInfo->address.protocolV4[3] = target.sin_addr.S_un.S_un_b.s_b4;
+#elif defined( __POSIX__ )
+        memcpy( &senderInfo->address.protocolV4[0], &target.sin_addr.s_addr, sizeof( target.sin_addr.s_addr ) );
+#endif
+
+		senderInfo->port = ( uint16_t )Endian::NetworkToHostUnsigned( target.sin_port, sizeof( target.sin_port ) );
 	}
 }
 
@@ -217,7 +232,7 @@ xiTCP::ReadIntoBuffer
 	Calls the operating system's recv function to read from the TCP connection
 ====================
 */
-byteLen_t xiTCP::ReadIntoBuffer( char * const buffer, const int32_t bufferLength, addressInfo_s * const senderInfo ) {
+byteLen_t xiTCP::ReadIntoBuffer( char * const buffer, const int32_t bufferLength ) {
 	return recv( nativeHandle, buffer, bufferLength, 0 );
 }
 

@@ -7,6 +7,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example.01.server", "..\exa
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example.01.client", "..\examples\example.01.client\example.01.client.vcxproj", "{5A6F1129-BCBB-4DA4-8BF6-ED158EDA7879}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example.02.client", "..\examples\example.02.client\example.02.client.vcxproj", "{1DDCC2D7-5EC3-4855-B3FD-09BDE455AC66}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example.02.server", "..\examples\example.02.server\example.02.server.vcxproj", "{5ECF2055-F5CC-443A-9417-037B85CF637C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -37,6 +41,22 @@ Global
 		{5A6F1129-BCBB-4DA4-8BF6-ED158EDA7879}.Release|Win32.ActiveCfg = Release|Win32
 		{5A6F1129-BCBB-4DA4-8BF6-ED158EDA7879}.Release|Win32.Build.0 = Release|Win32
 		{5A6F1129-BCBB-4DA4-8BF6-ED158EDA7879}.Release|x64.ActiveCfg = Release|Win32
+		{1DDCC2D7-5EC3-4855-B3FD-09BDE455AC66}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1DDCC2D7-5EC3-4855-B3FD-09BDE455AC66}.Debug|Win32.Build.0 = Debug|Win32
+		{1DDCC2D7-5EC3-4855-B3FD-09BDE455AC66}.Debug|x64.ActiveCfg = Debug|x64
+		{1DDCC2D7-5EC3-4855-B3FD-09BDE455AC66}.Debug|x64.Build.0 = Debug|x64
+		{1DDCC2D7-5EC3-4855-B3FD-09BDE455AC66}.Release|Win32.ActiveCfg = Release|Win32
+		{1DDCC2D7-5EC3-4855-B3FD-09BDE455AC66}.Release|Win32.Build.0 = Release|Win32
+		{1DDCC2D7-5EC3-4855-B3FD-09BDE455AC66}.Release|x64.ActiveCfg = Release|x64
+		{1DDCC2D7-5EC3-4855-B3FD-09BDE455AC66}.Release|x64.Build.0 = Release|x64
+		{5ECF2055-F5CC-443A-9417-037B85CF637C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5ECF2055-F5CC-443A-9417-037B85CF637C}.Debug|Win32.Build.0 = Debug|Win32
+		{5ECF2055-F5CC-443A-9417-037B85CF637C}.Debug|x64.ActiveCfg = Debug|x64
+		{5ECF2055-F5CC-443A-9417-037B85CF637C}.Debug|x64.Build.0 = Debug|x64
+		{5ECF2055-F5CC-443A-9417-037B85CF637C}.Release|Win32.ActiveCfg = Release|Win32
+		{5ECF2055-F5CC-443A-9417-037B85CF637C}.Release|Win32.Build.0 = Release|Win32
+		{5ECF2055-F5CC-443A-9417-037B85CF637C}.Release|x64.ActiveCfg = Release|x64
+		{5ECF2055-F5CC-443A-9417-037B85CF637C}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

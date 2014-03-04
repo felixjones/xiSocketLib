@@ -25,11 +25,11 @@
 #ifdef __linux__
 	#define __LINUX__
 
-#if defined( __LP64__ ) || defined( _LP64 )
-	#define __X64__
-#else
-	#define __X32__
-#endif
+	#if defined( __LP64__ ) || defined( _LP64 )
+		#define __X64__
+	#else
+		#define __X32__
+	#endif
 #endif
 
 #if defined( __LINUX__ ) || defined( __OS_X__ )
