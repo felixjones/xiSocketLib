@@ -204,7 +204,7 @@ xiProtoBase::GetPort
 */
 uint16_t xiProtoBase::GetPort() const {
 	sockaddr_in addressInfo;
-	int infoLen = sizeof( addressInfo );
+	socklen_t infoLen = sizeof( addressInfo );
 	if ( getsockname( nativeHandle, ( sockaddr * )&addressInfo, &infoLen ) != -1 ) {
 		return ( uint16_t )Endian::NetworkToHost( addressInfo.sin_port, sizeof( addressInfo.sin_port ) );
 	}

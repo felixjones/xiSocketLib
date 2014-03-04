@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		631E424118C65C6800AFEA0A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 631E424018C65C6800AFEA0A /* main.cpp */; };
+		631E424418C65D4C00AFEA0A /* libxiSock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 637C394218C386180007BB6F /* libxiSock.a */; };
+		631E425318C65F0300AFEA0A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 631E425218C65F0300AFEA0A /* main.cpp */; };
+		631E425618C65F1C00AFEA0A /* libxiSock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 637C394218C386180007BB6F /* libxiSock.a */; };
+		631E426618C660C400AFEA0A /* libxiSock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 637C394218C386180007BB6F /* libxiSock.a */; };
+		631E426818C660E400AFEA0A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 631E426718C660E400AFEA0A /* main.cpp */; };
+		631E427818C6620A00AFEA0A /* libxiSock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 637C394218C386180007BB6F /* libxiSock.a */; };
+		631E427A18C6621B00AFEA0A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 631E427918C6621B00AFEA0A /* main.cpp */; };
 		637C395A18C386470007BB6F /* Endian.h in Headers */ = {isa = PBXBuildFile; fileRef = 637C394A18C386470007BB6F /* Endian.h */; };
 		637C395B18C386470007BB6F /* NetString.h in Headers */ = {isa = PBXBuildFile; fileRef = 637C394B18C386470007BB6F /* NetString.h */; };
 		637C395C18C386470007BB6F /* os.h in Headers */ = {isa = PBXBuildFile; fileRef = 637C394C18C386470007BB6F /* os.h */; };
@@ -24,7 +32,85 @@
 		637C396818C386470007BB6F /* UDP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 637C395918C386470007BB6F /* UDP.cpp */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		631E424218C65D4300AFEA0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 637C393A18C386180007BB6F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 637C394118C386180007BB6F;
+			remoteInfo = xiSock;
+		};
+		631E425418C65F1800AFEA0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 637C393A18C386180007BB6F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 637C394118C386180007BB6F;
+			remoteInfo = xiSock;
+		};
+		631E426418C660C000AFEA0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 637C393A18C386180007BB6F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 637C394118C386180007BB6F;
+			remoteInfo = xiSock;
+		};
+		631E427618C6620600AFEA0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 637C393A18C386180007BB6F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 637C394118C386180007BB6F;
+			remoteInfo = xiSock;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		631E423518C65C4900AFEA0A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		631E424718C65EEF00AFEA0A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		631E425918C660A700AFEA0A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		631E426B18C661F200AFEA0A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		631E423718C65C4900AFEA0A /* example.01.server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = example.01.server; sourceTree = BUILT_PRODUCTS_DIR; };
+		631E424018C65C6800AFEA0A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../examples/example.01.server/main.cpp; sourceTree = "<group>"; };
+		631E424918C65EEF00AFEA0A /* example.01.client */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = example.01.client; sourceTree = BUILT_PRODUCTS_DIR; };
+		631E425218C65F0300AFEA0A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../examples/example.01.client/main.cpp; sourceTree = "<group>"; };
+		631E425B18C660A700AFEA0A /* example.02.client */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = example.02.client; sourceTree = BUILT_PRODUCTS_DIR; };
+		631E426718C660E400AFEA0A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../examples/example.02.client/main.cpp; sourceTree = "<group>"; };
+		631E426D18C661F200AFEA0A /* example.02.server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = example.02.server; sourceTree = BUILT_PRODUCTS_DIR; };
+		631E427918C6621B00AFEA0A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../examples/example.02.server/main.cpp; sourceTree = "<group>"; };
 		637C394218C386180007BB6F /* libxiSock.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libxiSock.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		637C394A18C386470007BB6F /* Endian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Endian.h; sourceTree = "<group>"; };
 		637C394B18C386470007BB6F /* NetString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetString.h; sourceTree = "<group>"; };
@@ -44,6 +130,38 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		631E423418C65C4900AFEA0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				631E424418C65D4C00AFEA0A /* libxiSock.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		631E424618C65EEF00AFEA0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				631E425618C65F1C00AFEA0A /* libxiSock.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		631E425818C660A700AFEA0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				631E426618C660C400AFEA0A /* libxiSock.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		631E426A18C661F200AFEA0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				631E427818C6620A00AFEA0A /* libxiSock.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		637C393F18C386180007BB6F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -54,11 +172,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		631E423818C65C4900AFEA0A /* example.01.server */ = {
+			isa = PBXGroup;
+			children = (
+				631E424018C65C6800AFEA0A /* main.cpp */,
+			);
+			path = example.01.server;
+			sourceTree = "<group>";
+		};
+		631E424A18C65EEF00AFEA0A /* example.01.client */ = {
+			isa = PBXGroup;
+			children = (
+				631E425218C65F0300AFEA0A /* main.cpp */,
+			);
+			path = example.01.client;
+			sourceTree = "<group>";
+		};
+		631E425C18C660A700AFEA0A /* example.02.client */ = {
+			isa = PBXGroup;
+			children = (
+				631E426718C660E400AFEA0A /* main.cpp */,
+			);
+			path = example.02.client;
+			sourceTree = "<group>";
+		};
+		631E426E18C661F200AFEA0A /* example.02.server */ = {
+			isa = PBXGroup;
+			children = (
+				631E427918C6621B00AFEA0A /* main.cpp */,
+			);
+			path = example.02.server;
+			sourceTree = "<group>";
+		};
 		637C393918C386180007BB6F = {
 			isa = PBXGroup;
 			children = (
 				637C394918C386470007BB6F /* include */,
 				637C395218C386470007BB6F /* source */,
+				631E423818C65C4900AFEA0A /* example.01.server */,
+				631E424A18C65EEF00AFEA0A /* example.01.client */,
+				631E425C18C660A700AFEA0A /* example.02.client */,
+				631E426E18C661F200AFEA0A /* example.02.server */,
 				637C394318C386180007BB6F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,6 +221,10 @@
 			isa = PBXGroup;
 			children = (
 				637C394218C386180007BB6F /* libxiSock.a */,
+				631E423718C65C4900AFEA0A /* example.01.server */,
+				631E424918C65EEF00AFEA0A /* example.01.client */,
+				631E425B18C660A700AFEA0A /* example.02.client */,
+				631E426D18C661F200AFEA0A /* example.02.server */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,6 +281,78 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		631E423618C65C4900AFEA0A /* example.01.server */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 631E423F18C65C4900AFEA0A /* Build configuration list for PBXNativeTarget "example.01.server" */;
+			buildPhases = (
+				631E423318C65C4900AFEA0A /* Sources */,
+				631E423418C65C4900AFEA0A /* Frameworks */,
+				631E423518C65C4900AFEA0A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				631E424318C65D4300AFEA0A /* PBXTargetDependency */,
+			);
+			name = example.01.server;
+			productName = example.01.server;
+			productReference = 631E423718C65C4900AFEA0A /* example.01.server */;
+			productType = "com.apple.product-type.tool";
+		};
+		631E424818C65EEF00AFEA0A /* example.01.client */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 631E424F18C65EEF00AFEA0A /* Build configuration list for PBXNativeTarget "example.01.client" */;
+			buildPhases = (
+				631E424518C65EEF00AFEA0A /* Sources */,
+				631E424618C65EEF00AFEA0A /* Frameworks */,
+				631E424718C65EEF00AFEA0A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				631E425518C65F1800AFEA0A /* PBXTargetDependency */,
+			);
+			name = example.01.client;
+			productName = example.01.client;
+			productReference = 631E424918C65EEF00AFEA0A /* example.01.client */;
+			productType = "com.apple.product-type.tool";
+		};
+		631E425A18C660A700AFEA0A /* example.02.client */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 631E426118C660A700AFEA0A /* Build configuration list for PBXNativeTarget "example.02.client" */;
+			buildPhases = (
+				631E425718C660A700AFEA0A /* Sources */,
+				631E425818C660A700AFEA0A /* Frameworks */,
+				631E425918C660A700AFEA0A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				631E426518C660C000AFEA0A /* PBXTargetDependency */,
+			);
+			name = example.02.client;
+			productName = example.02.client;
+			productReference = 631E425B18C660A700AFEA0A /* example.02.client */;
+			productType = "com.apple.product-type.tool";
+		};
+		631E426C18C661F200AFEA0A /* example.02.server */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 631E427318C661F200AFEA0A /* Build configuration list for PBXNativeTarget "example.02.server" */;
+			buildPhases = (
+				631E426918C661F200AFEA0A /* Sources */,
+				631E426A18C661F200AFEA0A /* Frameworks */,
+				631E426B18C661F200AFEA0A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				631E427718C6620600AFEA0A /* PBXTargetDependency */,
+			);
+			name = example.02.server;
+			productName = example.02.server;
+			productReference = 631E426D18C661F200AFEA0A /* example.02.server */;
+			productType = "com.apple.product-type.tool";
+		};
 		637C394118C386180007BB6F /* xiSock */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 637C394618C386180007BB6F /* Build configuration list for PBXNativeTarget "xiSock" */;
@@ -162,11 +392,47 @@
 			projectRoot = "";
 			targets = (
 				637C394118C386180007BB6F /* xiSock */,
+				631E423618C65C4900AFEA0A /* example.01.server */,
+				631E424818C65EEF00AFEA0A /* example.01.client */,
+				631E425A18C660A700AFEA0A /* example.02.client */,
+				631E426C18C661F200AFEA0A /* example.02.server */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		631E423318C65C4900AFEA0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				631E424118C65C6800AFEA0A /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		631E424518C65EEF00AFEA0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				631E425318C65F0300AFEA0A /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		631E425718C660A700AFEA0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				631E426818C660E400AFEA0A /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		631E426918C661F200AFEA0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				631E427A18C6621B00AFEA0A /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		637C393E18C386180007BB6F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -183,7 +449,142 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		631E424318C65D4300AFEA0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 637C394118C386180007BB6F /* xiSock */;
+			targetProxy = 631E424218C65D4300AFEA0A /* PBXContainerItemProxy */;
+		};
+		631E425518C65F1800AFEA0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 637C394118C386180007BB6F /* xiSock */;
+			targetProxy = 631E425418C65F1800AFEA0A /* PBXContainerItemProxy */;
+		};
+		631E426518C660C000AFEA0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 637C394118C386180007BB6F /* xiSock */;
+			targetProxy = 631E426418C660C000AFEA0A /* PBXContainerItemProxy */;
+		};
+		631E427718C6620600AFEA0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 637C394118C386180007BB6F /* xiSock */;
+			targetProxy = 631E427618C6620600AFEA0A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		631E423D18C65C4900AFEA0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../include",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		631E423E18C65C4900AFEA0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../include",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		631E425018C65EEF00AFEA0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../include",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		631E425118C65EEF00AFEA0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../include",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		631E426218C660A700AFEA0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../include",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		631E426318C660A700AFEA0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../include",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		631E427418C661F200AFEA0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../include",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		631E427518C661F200AFEA0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../include",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		637C394418C386180007BB6F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -271,6 +672,38 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		631E423F18C65C4900AFEA0A /* Build configuration list for PBXNativeTarget "example.01.server" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				631E423D18C65C4900AFEA0A /* Debug */,
+				631E423E18C65C4900AFEA0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		631E424F18C65EEF00AFEA0A /* Build configuration list for PBXNativeTarget "example.01.client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				631E425018C65EEF00AFEA0A /* Debug */,
+				631E425118C65EEF00AFEA0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		631E426118C660A700AFEA0A /* Build configuration list for PBXNativeTarget "example.02.client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				631E426218C660A700AFEA0A /* Debug */,
+				631E426318C660A700AFEA0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		631E427318C661F200AFEA0A /* Build configuration list for PBXNativeTarget "example.02.server" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				631E427418C661F200AFEA0A /* Debug */,
+				631E427518C661F200AFEA0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		637C393D18C386180007BB6F /* Build configuration list for PBXProject "xiSock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

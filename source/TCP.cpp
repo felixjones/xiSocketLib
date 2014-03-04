@@ -176,7 +176,7 @@ xiTCP::Accept
 */
 void xiTCP::Accept( const socketHandle_t _nativeHandle, addressInfo_s * const senderInfo ) {
 	sockaddr_in target;
-	int targetLength = ( int )sizeof( target );
+	socklen_t targetLength = ( int )sizeof( target );
 	memset( &target, 0, sizeof( target ) );
 	
 	nativeHandle = accept( _nativeHandle, ( sockaddr * )&target, &targetLength );

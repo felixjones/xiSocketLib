@@ -60,10 +60,12 @@ int main( int argc, char ** argv ) {
 				const int timeHour = timeStruct.tm_hour; // Convert time to hours
 				const int timeMinute = timeStruct.tm_min; // Convert time to minutes
 
-				sprintf( &buffer[0], "%d:%d\0", timeHour, timeMinute ); // Build a string of the time into the buffer
+                memset( &buffer[0], 0, BUFFER_LEN );
+				sprintf( &buffer[0], "%d:%d", timeHour, timeMinute ); // Build a string of the time into the buffer
+                const int32_t bufferLen = ( int32_t )strlen( buffer ) + 1;
 
 				// Attempt to send the buffer back to the same IP address and port that sent the packet
-				const byteLen_t sentBytes = udpSocket->SendBufferToAddress( &buffer[0], strlen( buffer ) + 1, senderInfo );
+				const byteLen_t sentBytes = udpSocket->SendBufferToAddress( &buffer[0], bufferLen, senderInfo );
 				if ( sentBytes > 0 ) {
 					// If the sending was successful, output it (This does not mean they got the packet)
 					printf( "Replied with \"%s\"\n", buffer );
