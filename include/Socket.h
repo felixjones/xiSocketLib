@@ -6,10 +6,12 @@
 
 #if defined( __WIN_API__ )
 	typedef uintptr_t   socketHandle_t;
-	typedef int         byteLen_t;
+    typedef int         byteLen_t;
+    typedef int         socketLen_t;
 #elif defined( __POSIX__ )
 	typedef int         socketHandle_t;
 	typedef long        byteLen_t;
+    typedef uint32_t    socketLen_t;
 #endif
 
 /*
