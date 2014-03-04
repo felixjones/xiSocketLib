@@ -134,7 +134,7 @@ xiTCP::ConnectTo
 	It will attempt the connection and only return a valid pointer if the connection is successful
 ====================
 */
-xiTCP * xiTCP::ConnectTo( const addressInfo_s listenInfo ) {
+xiTCP * xiTCP::ConnectTo( const addressInfo_s * const listenInfo ) {
 	xiTCP * const self = new xiTCP();
 
 	self->nativeHandle = OpenNativeSocket( SOCK_STREAM );
@@ -204,22 +204,22 @@ xiTCP::Connect
 	Used internally to start the client to server connection
 ====================
 */
-bool xiTCP::Connect( const addressInfo_s listenInfo ) {
+bool xiTCP::Connect( const addressInfo_s * const listenInfo ) {
 	sockaddr_in target;
 	int targetLength = ( int )sizeof( target );
 	memset( &target, 0, sizeof( target ) );
 	
 #ifdef __WIN_API__
 	target.sin_family = AF_INET;
-	target.sin_addr.S_un.S_un_b.s_b1 = listenInfo.address.protocolV4[0];
-	target.sin_addr.S_un.S_un_b.s_b2 = listenInfo.address.protocolV4[1];
-	target.sin_addr.S_un.S_un_b.s_b3 = listenInfo.address.protocolV4[2];
-	target.sin_addr.S_un.S_un_b.s_b4 = listenInfo.address.protocolV4[3];
+	target.sin_addr.S_un.S_un_b.s_b1 = listenInfo->address.protocolV4[0];
+	target.sin_addr.S_un.S_un_b.s_b2 = listenInfo->address.protocolV4[1];
+	target.sin_addr.S_un.S_un_b.s_b3 = listenInfo->address.protocolV4[2];
+	target.sin_addr.S_un.S_un_b.s_b4 = listenInfo->address.protocolV4[3];
 #else
     memcpy( &target.sin_addr.s_addr, &listenInfo.address.protocolV4[0], sizeof( target.sin_addr.s_addr ) );
 #endif
 	
-	target.sin_port = ( uint16_t )Endian::HostToNetworkUnsigned( listenInfo.port, sizeof( listenInfo.port ) );
+	target.sin_port = ( uint16_t )Endian::HostToNetworkUnsigned( listenInfo->port, sizeof( listenInfo->port ) );
 
 	const int connectResult = connect( nativeHandle, ( sockaddr * )&target, targetLength );
 	if ( connectResult == SOCKET_ERROR ) {

@@ -84,35 +84,6 @@ bool xiProtoBase::BindToPortV4( const uint16_t port ) {
 
 /*
 ====================
-xiProtoBase::ReadIntoBuffer
-
-	The default action is do nothing
-====================
-*/
-byteLen_t xiProtoBase::ReadIntoBuffer( char * const buffer, const int32_t bufferLength, addressInfo_s * const senderInfo ) {
-	// Don't know how to read with no protocol
-	if ( senderInfo ) {
-		memset( senderInfo, 0, sizeof( *senderInfo ) );
-	}
-
-	return 0;
-}
-
-/*
-====================
-xiProtoBase::SendBufferToAddress
-
-	The default action is do nothing
-====================
-*/
-byteLen_t xiProtoBase::SendBufferToAddress( const char * const buffer, const int32_t bufferLength, const addressInfo_s targetInfo ) {
-	// Don't know how to send
-
-	return 0;
-}
-
-/*
-====================
 xiProtoBase::SetBroadcasting
 
 	Sets if broadcasting is allowed by the protocol
@@ -150,7 +121,7 @@ xiProtoBase::SetBlocking
 ====================
 */
 bool xiProtoBase::SetBlocking( const bool blocking ) {
-   if ( nativeHandle < 0 ) {
+   if ( nativeHandle == 0 ) {
 	   return false;
    }
 

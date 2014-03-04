@@ -41,7 +41,7 @@ int main( int argc, char ** argv ) {
 			char senderIPString[80]; // Place to store the string version of the sender IP
 
 			// Convert sender IP to string
-			const size_t ipStringLen = NetString::FromV4Address( &senderInfo.address.protocolV4[0], 4, &senderIPString[0], 80 );
+			const size_t ipStringLen = NetString::FromV4Address( &senderInfo.address.protocolV4[0], IP_V4_BYTE_LEN, &senderIPString[0], 80 );
 			sprintf( &senderIPString[ipStringLen], ":%u", senderInfo.port ); // Append the port to the end of the string
 
 			if ( strcmp( buffer, "exit" ) == 0 ) {
@@ -65,7 +65,7 @@ int main( int argc, char ** argv ) {
                 const int32_t bufferLen = ( int32_t )strlen( buffer ) + 1;
 
 				// Attempt to send the buffer back to the same IP address and port that sent the packet
-				const byteLen_t sentBytes = udpSocket->SendBufferToAddress( &buffer[0], bufferLen, senderInfo );
+				const byteLen_t sentBytes = udpSocket->SendBufferToAddress( &buffer[0], bufferLen, &senderInfo );
 				if ( sentBytes > 0 ) {
 					// If the sending was successful, output it (This does not mean they got the packet)
 					printf( "Replied with \"%s\"\n", buffer );

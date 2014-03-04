@@ -14,6 +14,8 @@
     typedef uint32_t    socketLen_t;
 #endif
 
+#define IP_V4_BYTE_LEN	( 4 )
+
 /*
 ================================================================================
 
@@ -45,7 +47,7 @@ public:
 
 	struct addressInfo_s {
 		union address_u {
-			uint8_t	protocolV4[4];
+			uint8_t	protocolV4[IP_V4_BYTE_LEN];
 		} address;
 
 		uint16_t	port;
@@ -53,6 +55,7 @@ public:
 
 	static const uint16_t	PORT_ANY;
 protected:
+	status_e		status;
 	socketHandle_t	nativeHandle;
 };
 

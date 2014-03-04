@@ -23,10 +23,7 @@ protected:
 	virtual                 ~xiProtoBase();
 	static socketHandle_t	OpenNativeSocket( const int type );
 	bool                    BindToPortV4( const uint16_t port );
-	virtual byteLen_t       ReadIntoBuffer( char * const buffer, const int32_t bufferLength, addressInfo_s * const senderInfo = nullptr );
-	virtual byteLen_t       SendBufferToAddress( const char * const buffer, const int32_t bufferLength, const addressInfo_s targetInfo );
 
-	status_e	status;
 	bool		broadcastAllowed;
 };
 

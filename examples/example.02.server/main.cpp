@@ -46,7 +46,7 @@ int main( int argc, char ** argv ) {
 				char senderIPString[80]; // Place to store the string version of the sender IP
 
 				// Convert sender IP to string
-				const size_t ipStringLen = NetString::FromV4Address( &clientInfo.address.protocolV4[0], 4, &senderIPString[0], 80 );
+				const size_t ipStringLen = NetString::FromV4Address( &clientInfo.address.protocolV4[0], IP_V4_BYTE_LEN, &senderIPString[0], 80 );
 				sprintf( &senderIPString[ipStringLen], ":%u", clientInfo.port ); // Append the port to the end of the string
 
 				if ( strcmp( buffer, "exit" ) == 0 ) {

@@ -1,12 +1,12 @@
 #ifndef __OS_H__
 #define __OS_H__
 
-#if defined( _WIN32 ) || defined( _WIN64 )
+#if defined( _WIN32 ) || defined( _WIN64 ) || defined( WIN32 ) || defined( WIN64 )
 	#define __WINDOWS__
 
-	#ifdef _WIN64
+	#if defined( _WIN64 ) || defined( WIN64 )
 		#define __X64__
-	#else
+	#elif defined( _WIN32 ) || defined( WIN32 )
 		#define __X32__
 	#endif
 

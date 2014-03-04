@@ -33,7 +33,14 @@ xiSocket::xiSocket() {
 
 #ifdef __WIN_API__
 	if ( winsockReferenceCount++ == 0 ) {
-		WSAStartup( MAKEWORD( 2, 2 ), &winSockData ); // Start winsock
+		const int winSockError = WSAStartup( MAKEWORD( 2, 2 ), &winSockData ); // Start winsock
+		if ( winSockError ) {
+			if ( --winsockReferenceCount == 0 ) {
+				WSACleanup(); // Destroy winsock
+			}
+
+			status = STATUS_ERROR;
+		}
 	}
 #endif
 }

@@ -35,10 +35,19 @@ int main( int argc, char ** argv ) {
 		}
 		printf( "> " ); // Show the text input indicator
 
+#if defined( __X64__ )
+		_fseeki64( stdin, 0, SEEK_END ); // Clear the STDIN buffer
+#elif defined( __X32__ )
 		fseek( stdin, 0, SEEK_END ); // Clear the STDIN buffer
-		scanf( BUFFER_STR, buffer ); // See BUFFER_STR above
+#endif
+		const int scanState = scanf( BUFFER_STR, buffer ); // See BUFFER_STR above
 		// BUFFER_STR is set to allow text, numbers, spaces and colons
 		// Scanf will block while the user inputs text into buffer
+
+		if ( scanState <= 0 ) {
+			// Error with scanf
+			isRunning = false; // Kill the program just in case
+		}
 
 		// Buffers for splitting the input string into
 		char ipSection[16];
@@ -51,11 +60,11 @@ int main( int argc, char ** argv ) {
 		xiSocket::addressInfo_s destinationInfo; // We need to set where the packet is going
 
 		// Convert the IP address string into a uint8_t[4] byte address for the destination
-		NetString::ToV4Address( ipSection, 16, &destinationInfo.address.protocolV4[0], 4 );
+		NetString::ToV4Address( ipSection, 16, &destinationInfo.address.protocolV4[0], IP_V4_BYTE_LEN );
 		// Convert the port string to it's numeric value
 		destinationInfo.port = atoi( portSection );
 
-		xiTCP * const tcpSocket = xiTCP::ConnectTo( destinationInfo );
+		xiTCP * const tcpSocket = xiTCP::ConnectTo( &destinationInfo );
 		if ( tcpSocket ) {
 			tcpSocket->SetBlocking( true ); // Set the send to blocking, the program will halt until it is sent
 
@@ -88,7 +97,7 @@ int main( int argc, char ** argv ) {
 
 						if ( clock() > timeOutStart + 5000 * attempts ) {
 							attempts++;
-							printf( "Still trying (Attempt %u)\n", attempts );
+							printf( "Still trying (Attempt %d)\n", attempts );
 						}
 					} while ( clock() < timeOutStart + 30000 ); // 30 second timeout
 

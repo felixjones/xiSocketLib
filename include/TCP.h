@@ -36,12 +36,12 @@ protected:
 class xiTCP : public xiProtoBase {
 friend class xiTCPListen;
 public:
-	static xiTCP *		ConnectTo( const addressInfo_s listenInfo );
+	static xiTCP *		ConnectTo( const addressInfo_s * const listenInfo );
 	virtual byteLen_t	ReadIntoBuffer( char * const buffer, const int32_t bufferLength );
 	virtual byteLen_t	SendBuffer( const char * const buffer, const int32_t bufferLength );
 protected:
 	void	Accept( const socketHandle_t _nativeHandle, addressInfo_s * const senderInfo );
-	bool	Connect( const addressInfo_s listenInfo );
+	bool	Connect( const addressInfo_s * const listenInfo );
 			xiTCP();
 	virtual	~xiTCP();
 };

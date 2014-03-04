@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include "os.h"
 
+#define IP_V4_SEGMENTS	( 4 )
+
 using namespace NetString;
 
 namespace NetString {
@@ -21,23 +23,28 @@ NetString::CopySection
 ====================
 */
 void NetString::CopySection( char input[5], size_t charIndex, const char * const buffer, const size_t bufferLen ) {
-	if ( charIndex + 1 < bufferLen && buffer[charIndex + 1] != '.' ) {
-		input[0] = buffer[charIndex + 1];
+	const size_t charA = ( charIndex + IP_V4_SEGMENTS - 3 );
+	const size_t charB = ( charIndex + IP_V4_SEGMENTS - 2 );
+	const size_t charC = ( charIndex + IP_V4_SEGMENTS - 1 );
+	const size_t charD = ( charIndex + IP_V4_SEGMENTS );
+
+	if ( charA < bufferLen && buffer[charA] != '.' ) {
+		input[0] = buffer[charA];
 	} else {
 		input[0] = 0;
 	}
-	if ( charIndex + 2 < bufferLen && buffer[charIndex + 2] != '.' ) {
-		input[1] = buffer[charIndex + 2];
+	if ( charB < bufferLen && buffer[charB] != '.' ) {
+		input[1] = buffer[charB];
 	} else {
 		input[1] = 0;
 	}
-	if ( charIndex + 3 < bufferLen && buffer[charIndex + 3] != '.' ) {
-		input[2] = buffer[charIndex + 3];
+	if ( charC < bufferLen && buffer[charC] != '.' ) {
+		input[2] = buffer[charC];
 	} else {
 		input[2] = 0;
 	}
-	if ( charIndex + 4 < bufferLen && buffer[charIndex + 4] != '.' ) {
-		input[3] = buffer[charIndex + 4];
+	if ( charD < bufferLen && buffer[charD] != '.' ) {
+		input[3] = buffer[charD];
 	} else {
 		input[3] = 0;
 	}
@@ -53,7 +60,7 @@ NetString::ToV4Address
 ====================
 */
 size_t NetString::ToV4Address( const char * const buffer, const size_t bufferLen, uint8_t * const output, const size_t outputLen ) {
-	if ( outputLen < 4 || !output ) {
+	if ( outputLen < IP_V4_SEGMENTS || !output ) {
 		// Needs 32 bit output!
 		return 0;
 	} else if ( !bufferLen || !buffer ) {
@@ -93,7 +100,7 @@ size_t NetString::FromV4Address( const uint8_t * const buffer, const size_t buff
 	if ( outputLen < 16 || !output ) {
 		// IP 4 Addresses are a minimum of 16 chars in length!
 		return 0;
-	} else if ( bufferLen < 4 || !buffer ) {
+	} else if ( bufferLen < IP_V4_SEGMENTS || !buffer ) {
 		// Needs an IP address to work!
 		return 0;
 	}

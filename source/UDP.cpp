@@ -120,22 +120,22 @@ xiUDP::SendBufferToAddress
 	Nothing is done to check if it gets there
 ====================
 */
-byteLen_t xiUDP::SendBufferToAddress( const char * const buffer, const int32_t bufferLength, const addressInfo_s targetInfo ) {
+byteLen_t xiUDP::SendBufferToAddress( const char * const buffer, const int32_t bufferLength, const addressInfo_s * const targetInfo ) {
 	sockaddr_in target;
 	int targetLength = ( int )sizeof( target );
 	memset( &target, 0, sizeof( target ) );
 	
 #ifdef __WIN_API__
 	target.sin_family = AF_INET;
-	target.sin_addr.S_un.S_un_b.s_b1 = targetInfo.address.protocolV4[0];
-	target.sin_addr.S_un.S_un_b.s_b2 = targetInfo.address.protocolV4[1];
-	target.sin_addr.S_un.S_un_b.s_b3 = targetInfo.address.protocolV4[2];
-	target.sin_addr.S_un.S_un_b.s_b4 = targetInfo.address.protocolV4[3];
+	target.sin_addr.S_un.S_un_b.s_b1 = targetInfo->address.protocolV4[0];
+	target.sin_addr.S_un.S_un_b.s_b2 = targetInfo->address.protocolV4[1];
+	target.sin_addr.S_un.S_un_b.s_b3 = targetInfo->address.protocolV4[2];
+	target.sin_addr.S_un.S_un_b.s_b4 = targetInfo->address.protocolV4[3];
 #elif defined( __POSIX__ )
     memcpy( &target.sin_addr.s_addr, &targetInfo.address.protocolV4[0], sizeof( target.sin_addr.s_addr ) );
 #endif
 
-	target.sin_port = ( uint16_t )Endian::HostToNetworkUnsigned( targetInfo.port, sizeof( targetInfo.port ) );
+	target.sin_port = ( uint16_t )Endian::HostToNetworkUnsigned( targetInfo->port, sizeof( targetInfo->port ) );
 
 	const byteLen_t sentBytes = sendto( nativeHandle, buffer, bufferLength, 0, ( sockaddr * )&target, targetLength );
 

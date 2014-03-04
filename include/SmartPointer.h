@@ -114,7 +114,7 @@ public:
 	}
 	
 	// Smart pointer array accessor
-	T& operator[] ( int x ) {
+	T& operator[] ( intptr_t x ) {
 		return pointer[x];
 	}
 private:
