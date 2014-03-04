@@ -84,7 +84,7 @@ int main( int argc, char ** argv ) {
 							didTimeOut = false; // We got a reply before the timeout
 							break; // Break the listen loop
 						}
-					} while ( clock() < timeOutStart + 3000 ); // 3 second timeout
+					} while ( clock() < timeOutStart + 30000 ); // 30 second timeout
 
 					if ( didTimeOut ) {
 						// If we did infact timeout, notify the user
