@@ -39,7 +39,7 @@ UDP Send Example
 	destination.address.protocolV4[2] = 0;
 	destination.address.protocolV4[3] = 2;
 
-	const int sentBytes = udpSocket->SendBufferToAddress( &myPacket[0], packetLen, destination );
+	const int sentBytes = udpSocket->SendBufferToAddress( &myPacket[0], packetLen, &destination );
 	if ( sentBytes ) {
 		// Packet sent, hopefully it reaches the destination
 	}
