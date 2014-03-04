@@ -70,6 +70,7 @@ int main( int argc, char ** argv ) {
 				} else {
 					bool didTimeOut = true; // Presume that we won't get a reply in time
 					const clock_t timeOutStart = clock(); // Record when we started listening
+					int attempts = 1;
 
 					do {
 						tcpSocket->SetBlocking( false ); // Set the socket to non-blocking so we can update the timer
@@ -83,6 +84,11 @@ int main( int argc, char ** argv ) {
 
 							didTimeOut = false; // We got a reply before the timeout
 							break; // Break the listen loop
+						}
+
+						if ( clock() > timeOutStart + 5000 * attempts ) {
+							attempts++;
+							printf( "Still trying (Attempt %u)\n", attempts );
 						}
 					} while ( clock() < timeOutStart + 30000 ); // 30 second timeout
 

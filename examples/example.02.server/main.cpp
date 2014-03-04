@@ -33,11 +33,16 @@ int main( int argc, char ** argv ) {
 
 		xiTCP * const tcpConnection = tcpSocket->Listen( &clientInfo );
 		if ( tcpConnection ) {
-			const byteLen_t receivedBytes = tcpConnection->ReadIntoBuffer( &buffer[0], BUFFER_LEN );
-			if ( receivedBytes > 0 ) {
-				// If we received anything ( receivedBytes > 0 )
-				// The buffer contains the packet
-				
+			byteLen_t receivedBytes = 0;
+
+			while ( isRunning ) {
+				receivedBytes = tcpConnection->ReadIntoBuffer( &buffer[0], BUFFER_LEN );
+				if ( receivedBytes <= 0 ) {
+					// If we didn't receive anything ( receivedBytes <= 0 ) break out of the loop
+					break;
+				}
+
+				// The buffer contains the packet at this point
 				char senderIPString[80]; // Place to store the string version of the sender IP
 
 				// Convert sender IP to string
