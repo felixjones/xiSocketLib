@@ -34,8 +34,8 @@ int main( int argc, char ** argv ) {
 			tutorial = false; // Disable the tutorial message for future runs
 		}
 		printf( "> " ); // Show the text input indicator
-
-#if defined( __X64__ )
+        
+#if defined( __X64__ ) && defined( __WIN_API__ )
 		_fseeki64( stdin, 0, SEEK_END ); // Clear the STDIN buffer
 #elif defined( __X32__ )
 		fseek( stdin, 0, SEEK_END ); // Clear the STDIN buffer

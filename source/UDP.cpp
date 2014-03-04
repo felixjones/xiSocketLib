@@ -132,7 +132,7 @@ byteLen_t xiUDP::SendBufferToAddress( const char * const buffer, const int32_t b
 	target.sin_addr.S_un.S_un_b.s_b3 = targetInfo->address.protocolV4[2];
 	target.sin_addr.S_un.S_un_b.s_b4 = targetInfo->address.protocolV4[3];
 #elif defined( __POSIX__ )
-    memcpy( &target.sin_addr.s_addr, &targetInfo.address.protocolV4[0], sizeof( target.sin_addr.s_addr ) );
+    memcpy( &target.sin_addr.s_addr, &targetInfo->address.protocolV4[0], sizeof( target.sin_addr.s_addr ) );
 #endif
 
 	target.sin_port = ( uint16_t )Endian::HostToNetworkUnsigned( targetInfo->port, sizeof( targetInfo->port ) );

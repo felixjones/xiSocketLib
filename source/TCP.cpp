@@ -216,7 +216,7 @@ bool xiTCP::Connect( const addressInfo_s * const listenInfo ) {
 	target.sin_addr.S_un.S_un_b.s_b3 = listenInfo->address.protocolV4[2];
 	target.sin_addr.S_un.S_un_b.s_b4 = listenInfo->address.protocolV4[3];
 #else
-    memcpy( &target.sin_addr.s_addr, &listenInfo.address.protocolV4[0], sizeof( target.sin_addr.s_addr ) );
+    memcpy( &target.sin_addr.s_addr, &listenInfo->address.protocolV4[0], sizeof( target.sin_addr.s_addr ) );
 #endif
 	
 	target.sin_port = ( uint16_t )Endian::HostToNetworkUnsigned( listenInfo->port, sizeof( listenInfo->port ) );
