@@ -13,33 +13,37 @@
 	#pragma warning( disable: 4996 )
 #endif
 
-#ifdef __APPLE__
+#if defined( __APPLE__ )
 	#include <TargetConditionals.h>
 
-	#ifdef TARGET_OS_MAC
+	#if defined( TARGET_OS_MAC )
 		#define __OS_X__
 		#define __X64__
 	#endif
 #endif
 
-#ifdef __linux__
+#if defined( __linux__ )
 	#define __LINUX__
 
 	#if defined( __LP64__ ) || defined( _LP64 )
 		#define __X64__
-	#else
+	#elif !defined( __LP64__ ) && !defined( _LP64 )
 		#define __X32__
 	#endif
 #endif
 
 #if defined( __LINUX__ ) || defined( __OS_X__ )
 	#define __POSIX__
-#else
+#elif defined( __WINDOWS__ )
 	#define	__WIN_API__
 #endif
 
 #if !defined( __POSIX__ ) && !defined( __WIN_API__ )
 	#error	"Unknown platform"
+#endif
+
+#if !defined( __X32__ ) && !defined( __X64__ )
+	#error	"Unknown architecture"
 #endif
 
 #endif
