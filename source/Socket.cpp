@@ -107,7 +107,7 @@ byteLen_t xiSocket::ReadInt32( const char * const buffer, void * const varptr ) 
 	const byteLen_t size = sizeof( uint32_t );
 
 	uint32_t num = *( uint32_t * )buffer;
-	num = ( uint16_t )Endian::NetworkToHostUnsigned( num, size );
+	num = ( uint32_t )Endian::NetworkToHostUnsigned( num, size );
 
 	memcpy( varptr, &num, size );
 
@@ -175,7 +175,7 @@ byteLen_t xiSocket::WriteInt32( char * const buffer, void * const varptr ) {
 	const byteLen_t size = sizeof( uint32_t );
 
 	uint32_t num = *( uint32_t * )varptr;
-	num = ( uint16_t )Endian::HostToNetworkUnsigned( num, size );
+	num = ( uint32_t )Endian::HostToNetworkUnsigned( num, size );
 
 	memcpy( buffer, &num, size );
 
