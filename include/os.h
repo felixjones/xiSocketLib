@@ -38,6 +38,12 @@
 	#define	__WIN_API__
 #endif
 
+#if defined( _DEBUG ) || defined( DEBUG )
+	#define __DEBUG__
+#elif !defined( _DEBUG ) && !defined( DEBUG )
+	#define __RELEASE__
+#endif
+
 #if !defined( __POSIX__ ) && !defined( __WIN_API__ )
 	#error	"Unknown platform"
 #endif
