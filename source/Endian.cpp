@@ -4,19 +4,19 @@
 
 #if defined( __POSIX__ )
 	#include <arpa/inet.h>
-    #include <machine/endian.h>
+	#include <machine/endian.h>
 #elif defined( __WIN_API__ )
 	#include <WinSock2.h>
 #endif
 
 #if defined( __OS_X__ )
-    #if ( __DARWIN_BYTE_ORDER == __DARWIN_LITTLE_ENDIAN )
-        #define ntohll( x ) __DARWIN_OSSwapInt64( x )
-        #define htonll( x ) ntohll( x )
-    #elif ( __DARWIN_BYTE_ORDER == __DARWIN_BIG_ENDIAN )
-        #define ntohll( x ) ( x )
-        #define htonll( x ) ( x )
-    #endif
+	#if ( __DARWIN_BYTE_ORDER == __DARWIN_LITTLE_ENDIAN )
+		#define ntohll( x ) __DARWIN_OSSwapInt64( x )
+		#define htonll( x ) ntohll( x )
+	#elif ( __DARWIN_BYTE_ORDER == __DARWIN_BIG_ENDIAN )
+		#define ntohll( x ) ( x )
+		#define htonll( x ) ( x )
+	#endif
 #elif defined( __WIN_API__ )
 	#define ntohll( x ) ( ( ( int64_t )( ntohl( ( int32_t )( ( x << 32 ) >> 32 ) ) ) << 32) | ( uint32_t )ntohl( ( ( int32_t )( x >> 32 ) ) ) )
 	#define htonll( x ) ntohll( x )
