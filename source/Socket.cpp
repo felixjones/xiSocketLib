@@ -3,7 +3,7 @@
 #include "os.h"
 #include "Endian.h"
 
-#ifdef __WIN_API__
+#if defined( __WIN_API__ )
     #pragma comment( lib, "Ws2_32.lib" )
 
     #include <WinSock2.h>
@@ -31,7 +31,7 @@ xiSocket::xiSocket
 xiSocket::xiSocket() {
 	nativeHandle = 0; // This is a null socket, it shouldn't do anything
 
-#ifdef __WIN_API__
+#if defined( __WIN_API__ )
 	if ( winsockReferenceCount++ == 0 ) {
 		const int winSockError = WSAStartup( MAKEWORD( 2, 2 ), &winSockData ); // Start winsock
 		if ( winSockError ) {
@@ -55,7 +55,7 @@ xiSocket::~xiSocket
 ====================
 */
 xiSocket::~xiSocket() {
-#ifdef __WIN_API__
+#if defined( __WIN_API__ )
 	if ( --winsockReferenceCount == 0 ) {
 		WSACleanup(); // Destroy winsock
 	}
