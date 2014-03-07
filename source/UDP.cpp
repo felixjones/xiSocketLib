@@ -15,7 +15,7 @@
     #define INVALID_SOCKET  ( -1 )
 #endif
 
-#ifdef __WIN_API__
+#if defined( __WIN_API__ )
 	typedef int socklen_t;
 #endif
 	
@@ -96,7 +96,7 @@ byteLen_t xiUDP::ReadIntoBuffer( char * const buffer, const int32_t bufferLength
 	if ( senderInfo ) {
 		memset( senderInfo, 0, sizeof( *senderInfo ) );
         
-#ifdef __WIN_API__
+#if defined( __WIN_API__ )
 		senderInfo->address.protocolV4[0] = sender.sin_addr.S_un.S_un_b.s_b1;
 		senderInfo->address.protocolV4[1] = sender.sin_addr.S_un.S_un_b.s_b2;
 		senderInfo->address.protocolV4[2] = sender.sin_addr.S_un.S_un_b.s_b3;
@@ -125,7 +125,7 @@ byteLen_t xiUDP::SendBufferToAddress( const char * const buffer, const int32_t b
 	int targetLength = ( int )sizeof( target );
 	memset( &target, 0, sizeof( target ) );
 	
-#ifdef __WIN_API__
+#if defined( __WIN_API__ )
 	target.sin_family = AF_INET;
 	target.sin_addr.S_un.S_un_b.s_b1 = targetInfo->address.protocolV4[0];
 	target.sin_addr.S_un.S_un_b.s_b2 = targetInfo->address.protocolV4[1];
