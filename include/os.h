@@ -10,7 +10,9 @@
 		#define __X32__
 	#endif
 
-	#pragma warning( disable: 4996 )
+	#if defined( __UNSAFE__ )
+		#pragma warning( disable: 4996 )
+	#endif
 #endif
 
 #if defined( __APPLE__ )

@@ -33,10 +33,14 @@ public:
 	static byteLen_t	ReadInt16( const char * const buffer, void * const varptr );
 	static byteLen_t	ReadInt32( const char * const buffer, void * const varptr );
 	static byteLen_t	ReadInt64( const char * const buffer, void * const varptr );
-	static byteLen_t	WriteInt8( char * const buffer, void * const varptr );
-	static byteLen_t	WriteInt16( char * const buffer, void * const varptr );
-	static byteLen_t	WriteInt32( char * const buffer, void * const varptr );
-	static byteLen_t	WriteInt64( char * const buffer, void * const varptr );
+	static byteLen_t	ReadBytes( const char * const buffer, uint8_t * const byteptr, const byteLen_t byteLen );
+	static byteLen_t	ReadString( const char * const buffer, char * const byteptr );
+	static byteLen_t	WriteInt8( char * const buffer, const void * const varptr );
+	static byteLen_t	WriteInt16( char * const buffer, const void * const varptr );
+	static byteLen_t	WriteInt32( char * const buffer, const void * const varptr );
+	static byteLen_t	WriteInt64( char * const buffer, const void * const varptr );
+	static byteLen_t	WriteBytes( char * const buffer, const uint8_t * const byteptr, const byteLen_t byteLen );
+	static byteLen_t	WriteString( char * const buffer, const char * const byteptr );
 	
 	enum status_e {
 		STATUS_INVALID		=	0x0,

@@ -2,6 +2,7 @@
 #include <time.h>
 #include <stdio.h>
 
+#define __UNSAFE__ // disable warning 4996 on VC++
 #include <TCP.h>
 #include <NetString.h>
 
@@ -20,8 +21,7 @@ int main( int argc, char ** argv ) {
 	bool isRunning = true; // Flag that keeps the while loop running
 
 	xiTCPListen * const tcpSocket = xiTCPListen::CreateOnPort( SERVER_PORT ); // Open socket on port SERVER_PORT
-	//tcpSocket->SetBlocking( false );
-
+	
 	if ( tcpSocket ) {
 		// Print that the socket has successfully opened
 		printf( "Server started on port %u\n", tcpSocket->GetPort() );

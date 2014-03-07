@@ -11,7 +11,7 @@
 #define BUFFER_LEN	( 80 )
 #define BUFFER_STR	( "%79[0-9a-zA-Z.: ]s\n0" )
 
-void CopyInputToBuffers( const char * const inputBuffer, char * const outIP, char * const outPort, char * const outCommand );
+void CopyInputToBuffers( const char * const inputBuffer, char * const outPort, char * const outCommand );
 
 /*
 ====================
@@ -29,6 +29,8 @@ int main( int argc, char ** argv ) {
 	xiUDP * const udpSocket = xiUDP::CreateOnPort( xiSocket::PORT_ANY );
 	
 	if ( udpSocket ) {
+		udpSocket->SetBroadcasting( true );
+
 		// Notify that we have successfully opened a socket
 		printf( "Client started on port %u\n", udpSocket->GetPort() );
 	}
@@ -36,10 +38,10 @@ int main( int argc, char ** argv ) {
 	while ( udpSocket && isRunning ) {
 		// While the socket is good and the program is running
 
-		printf( "Enter IP address and port then command\n" );
+		printf( "Enter port then command\n" );
 		if ( tutorial ) {
 			// Display the tutorial message
-			printf( "Eg:\n192.168.0.2:27000 time\n\n" );
+			printf( "Eg:\n27000 time\n\n" );
 
 			tutorial = false; // Disable the tutorial message for future runs
 		}
@@ -60,23 +62,18 @@ int main( int argc, char ** argv ) {
 		}
 
 		// Buffers for splitting the input string into
-		char ipSection[16];
 		char portSection[6];
 		char command[8];
 		
 		// Split the input string into the buffers
-		CopyInputToBuffers( buffer, &ipSection[0], &portSection[0], &command[0] );
+		CopyInputToBuffers( buffer, &portSection[0], &command[0] );
 
-		xiSocket::addressInfo_s destinationInfo; // We need to set where the packet is going
-
-		// Convert the IP address string into a uint8_t[4] byte address for the destination
-		NetString::ToV4Address( ipSection, 16, &destinationInfo.address.protocolV4[0], IP_V4_BYTE_LEN );
 		// Convert the port string to it's numeric value
-		destinationInfo.port = atoi( portSection );
+		const uint16_t destPort = atoi( portSection );
 		
 		udpSocket->SetBlocking( true ); // Set the send to blocking, the program will halt until it is sent
 
-		const byteLen_t sentBytes = udpSocket->SendBufferToAddress( command, 8, &destinationInfo ); // command is 8 chars max, see it's declaration
+		const byteLen_t sentBytes = udpSocket->BroadcastBuffer( command, 8, destPort ); // command is 8 chars max, see it's declaration
 		if ( sentBytes > 0 ) {
 			// If we managed to send something
 
@@ -91,12 +88,16 @@ int main( int argc, char ** argv ) {
 				do {
 					udpSocket->SetBlocking( false ); // Set the socket to non-blocking so we can update the timer
 
-					const byteLen_t receivedBytes = udpSocket->ReadIntoBuffer( buffer, BUFFER_LEN ); // Listen to the socket into buffer
+					xiSocket::addressInfo_s sender;
+
+					const byteLen_t receivedBytes = udpSocket->ReadIntoBuffer( buffer, BUFFER_LEN, &sender ); // Listen to the socket into buffer
 					if ( receivedBytes > 0 ) {
 						// If we received something
+						char senderIPString[80];
+						NetString::FromV4Address( &sender.address.protocolV4[0], IP_V4_BYTE_LEN, &senderIPString[0], 80 );
 
 						// Output who we sent the message to and what the reply we got was
-						printf( "Reply from %s:%s \"%s\"\n", ipSection, portSection, buffer );
+						printf( "Reply from %s:%s \"%s\"\n", senderIPString, portSection, buffer );
 
 						didTimeOut = false; // We got a reply before the timeout
 						break; // Break the listen loop
@@ -127,38 +128,27 @@ CopyInputToBuffers
 
 	Function that takes the input string and fills some char buffers with the data
 	This is a dangerous function with a high chance of crashing with bad data!
-	Expects the tokens: "X:P C" with X being the IP address, P the port and C the command
+	Expects the tokens: "P C" with P the port and C the command
 ====================
 */
-void CopyInputToBuffers( const char * const inputBuffer, char * const outIP, char * const outPort, char * const outCommand ) {
+void CopyInputToBuffers( const char * const inputBuffer, char * const outPort, char * const outCommand ) {
 	// Copy in IP string
 	const char * c = &inputBuffer[0];
-	while ( *c != ':' ) {
-		const size_t offset = c - &inputBuffer[0];
-		outIP[offset] = *c;
-		outIP[offset + 1] = 0;
-
-		c++;
-	}
-	const size_t ipStrLen = strlen( outIP ) + 1;
 		
 	// Copy in port string
-	c++;
 	while ( *c != ' ' ) {
-		const size_t offset = c - &inputBuffer[ipStrLen];
+		const size_t offset = c - &inputBuffer[0];
 		outPort[offset] = *c;
 		outPort[offset + 1] = 0;
 
 		c++;
 	}
 	const size_t portStrLen = strlen( outPort ) + 1;
-
-	const size_t ipPortLen = ( ipStrLen + portStrLen );
-
+	
 	// Copy in command string
 	c++;
 	while ( *c != 0 ) {
-		const size_t offset = c - &inputBuffer[ipPortLen];
+		const size_t offset = c - &inputBuffer[portStrLen];
 		outCommand[offset] = *c;
 		outCommand[offset + 1] = 0;
 

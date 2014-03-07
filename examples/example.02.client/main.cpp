@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
+#define __UNSAFE__ // disable warning 4996 on VC++
 #include <TCP.h>
 #include <NetString.h>
 

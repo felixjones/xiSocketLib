@@ -11,7 +11,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example.02.client", "..\exa
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example.02.server", "..\examples\example.02.server\example.02.server.vcxproj", "{5ECF2055-F5CC-443A-9417-037B85CF637C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example.03.broadcast", "..\examples\example.03.client\example.03.client.vcxproj", "{63410C1D-170E-4256-9060-F92D542C48AC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example.03.broadcast", "..\examples\example.03.broadcast\example.03.broadcast.vcxproj", "{63410C1D-170E-4256-9060-F92D542C48AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
