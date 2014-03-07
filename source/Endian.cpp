@@ -10,10 +10,10 @@
 #endif
 
 #if defined( __OS_X__ )
-    #if __DARWIN_BYTE_ORDER == __DARWIN_LITTLE_ENDIAN
+    #if ( __DARWIN_BYTE_ORDER == __DARWIN_LITTLE_ENDIAN )
         #define ntohll( x ) __DARWIN_OSSwapInt64( x )
         #define htonll( x ) ntohll( x )
-    #else
+    #elif ( __DARWIN_BYTE_ORDER == __DARWIN_BIG_ENDIAN )
         #define ntohll( x ) ( x )
         #define htonll( x ) ( x )
     #endif
