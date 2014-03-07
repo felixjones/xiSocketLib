@@ -125,7 +125,7 @@ bool xiProtoBase::SetBlocking( const bool blocking ) {
 	   return false;
    }
 
-#ifdef WIN32
+#if defined( __WIN_API__ )
    unsigned long mode = blocking ? 0 : 1;
    return ( ioctlsocket( nativeHandle, FIONBIO, &mode ) == 0) ? true : false;
 #elif defined( __POSIX__ )
