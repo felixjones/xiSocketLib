@@ -5,8 +5,8 @@
 
 #if defined( __POSIX__ )
 	#include <arpa/inet.h>
-    #include <sys/socket.h>
-    #include <string.h>
+	#include <sys/socket.h>
+	#include <string.h>
 
 	#if !defined( SOCKET_ERROR )
 		#define SOCKET_ERROR    ( -1 )
@@ -16,11 +16,11 @@
 #endif
 
 #if defined( __OS_X__ )
-    #define INVALID_SOCKET  ( -1 )
+	#define INVALID_SOCKET  ( -1 )
 #endif
 
-#ifdef __WIN_API__
-    typedef int socklen_t;
+#if defined( __WIN_API__ )
+	typedef int socklen_t;
 #endif
 
 /*
@@ -184,7 +184,7 @@ void xiTCP::Accept( const socketHandle_t _nativeHandle, addressInfo_s * const se
 	if ( nativeHandle == INVALID_SOCKET ) {
 		status = STATUS_INVALID;
 	} else {
-#ifdef __WIN_API__
+#if defined( __WIN_API__ )
 		senderInfo->address.protocolV4[0] = target.sin_addr.S_un.S_un_b.s_b1;
 		senderInfo->address.protocolV4[1] = target.sin_addr.S_un.S_un_b.s_b2;
 		senderInfo->address.protocolV4[2] = target.sin_addr.S_un.S_un_b.s_b3;
@@ -209,13 +209,13 @@ bool xiTCP::Connect( const addressInfo_s * const listenInfo ) {
 	int targetLength = ( int )sizeof( target );
 	memset( &target, 0, sizeof( target ) );
 	
-#ifdef __WIN_API__
+#if defined( __WIN_API__ )
 	target.sin_family = AF_INET;
 	target.sin_addr.S_un.S_un_b.s_b1 = listenInfo->address.protocolV4[0];
 	target.sin_addr.S_un.S_un_b.s_b2 = listenInfo->address.protocolV4[1];
 	target.sin_addr.S_un.S_un_b.s_b3 = listenInfo->address.protocolV4[2];
 	target.sin_addr.S_un.S_un_b.s_b4 = listenInfo->address.protocolV4[3];
-#else
+#elif defined( __POSIX__ )
     memcpy( &target.sin_addr.s_addr, &listenInfo->address.protocolV4[0], sizeof( target.sin_addr.s_addr ) );
 #endif
 	
