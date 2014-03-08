@@ -25,9 +25,6 @@
     <ClInclude Include="..\include\TCP.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\HyperText.h">
-      <Filter>include</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include">
@@ -57,9 +54,6 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\source\UDP.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\HyperText.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

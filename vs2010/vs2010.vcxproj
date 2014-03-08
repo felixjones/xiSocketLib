@@ -20,7 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Endian.h" />
-    <ClInclude Include="..\include\HyperText.h" />
     <ClInclude Include="..\include\NetString.h" />
     <ClInclude Include="..\include\os.h" />
     <ClInclude Include="..\include\ProtoBase.h" />
@@ -31,7 +30,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Endian.cpp" />
-    <ClCompile Include="..\source\HyperText.cpp" />
     <ClCompile Include="..\source\NetString.cpp" />
     <ClCompile Include="..\source\ProtoBase.cpp" />
     <ClCompile Include="..\source\SmartPointer.cpp" />

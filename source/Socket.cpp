@@ -1,5 +1,7 @@
+#define __UNSAFE__
 #include "Socket.h"
 
+#include <stdio.h>
 #include "os.h"
 #include "Endian.h"
 
@@ -267,8 +269,6 @@ byteLen_t xiSocket::WriteString( char * const buffer, const char * const byteptr
 	return lenPlusNull;
 }
 
-#include <stdio.h>
-
 /*
 ====================
 xiSocket::DomainLookup
@@ -318,6 +318,8 @@ bool xiSocket::DomainLookup( const char * const url, const uint16_t port, xiSock
 			info->address.protocolV4[1] = sockData->sin_addr.S_un.S_un_b.s_b2;
 			info->address.protocolV4[2] = sockData->sin_addr.S_un.S_un_b.s_b3;
 			info->address.protocolV4[3] = sockData->sin_addr.S_un.S_un_b.s_b4;
+
+			break;
 		}
 	}
 	
