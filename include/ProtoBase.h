@@ -24,7 +24,7 @@ protected:
 	static socketHandle_t	OpenNativeSocket( const int type );
 	bool                    BindToPortV4( const uint16_t port );
 
-	bool		broadcastAllowed;
+	bool	broadcastAllowed;
 };
 
 #endif

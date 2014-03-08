@@ -7,6 +7,7 @@
     #pragma comment( lib, "Ws2_32.lib" )
 
     #include <WinSock2.h>
+	#include <WS2tcpip.h>
 
     namespace WinSock {
         uint32_t	winsockReferenceCount = 0;
@@ -264,4 +265,61 @@ byteLen_t xiSocket::WriteString( char * const buffer, const char * const byteptr
 	const byteLen_t lenPlusNull = ( byteLen_t )strlen( byteptr ) + 1; // Returns the string plus the null terminator
 
 	return lenPlusNull;
+}
+
+#include <stdio.h>
+
+/*
+====================
+xiSocket::DomainLookup
+
+	Takes a url as a string and performs DNS to return the address information
+	URL is in the format a://b.c.d:p/d.i
+	a : optional protocol
+	b : optional www
+	c : domain
+	d : extension
+	p : optional port
+	d : ignored filepath
+	i : ignored file extension
+====================
+*/
+bool xiSocket::DomainLookup( const char * const url, const uint16_t port, xiSocket::addressInfo_s * const info ) {
+#if defined( __WIN_API__ )
+	xiSocket openSocket; // We do this to kick off WinSock if it hasn't yet started
+#endif
+	char portStr[10];
+	sprintf( portStr, "%u", port );
+
+    memset( info, 0, sizeof( *info ) );
+	info->port = 80;
+
+    // So-called "hints" structure detailed in the getaddrinfo() MSDN page.
+    // I guess it contains information for the DNS lookup.
+    addrinfo hints;
+    memset( &hints, 0, sizeof( hints ) );
+    hints.ai_family = AF_UNSPEC;
+    hints.ai_socktype = SOCK_STREAM;
+    hints.ai_protocol = IPPROTO_TCP;
+	
+    //Perform DNS lookup
+	addrinfo * res = nullptr;
+    const int addInfoState = getaddrinfo( url, portStr, &hints, &res ); // hardcode port number, for now
+
+    if ( addInfoState != 0 ) {
+		return false;
+	}
+
+	for ( addrinfo * ptr = res; ptr != nullptr; ptr = ptr->ai_next ) {
+		switch( ptr->ai_family ) {
+		case AF_INET:
+			const sockaddr_in * const sockData = ( const sockaddr_in * )ptr->ai_addr;//set current address
+			info->address.protocolV4[0] = sockData->sin_addr.S_un.S_un_b.s_b1;
+			info->address.protocolV4[1] = sockData->sin_addr.S_un.S_un_b.s_b2;
+			info->address.protocolV4[2] = sockData->sin_addr.S_un.S_un_b.s_b3;
+			info->address.protocolV4[3] = sockData->sin_addr.S_un.S_un_b.s_b4;
+		}
+	}
+	
+	return true;
 }
