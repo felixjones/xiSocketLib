@@ -297,26 +297,23 @@ bool xiSocket::DomainLookup( const char * const url, const uint16_t port, xiSock
     memset( info, 0, sizeof( *info ) );
 	info->port = 80;
 
-    // So-called "hints" structure detailed in the getaddrinfo() MSDN page.
-    // I guess it contains information for the DNS lookup.
     addrinfo hints;
     memset( &hints, 0, sizeof( hints ) );
     hints.ai_family = AF_UNSPEC;
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_protocol = IPPROTO_TCP;
 	
-    //Perform DNS lookup
+    // Perform DNS lookup
 	addrinfo * res = nullptr;
-    const int addInfoState = getaddrinfo( url, portStr, &hints, &res ); // hardcode port number, for now
+    const int addInfoState = getaddrinfo( url, portStr, &hints, &res );
 
     if ( addInfoState != 0 ) {
 		return false;
 	}
 
 	for ( addrinfo * ptr = res; ptr != nullptr; ptr = ptr->ai_next ) {
-		switch( ptr->ai_family ) {
-		case AF_INET:
-			const sockaddr_in * const sockData = ( const sockaddr_in * )ptr->ai_addr;//set current address
+		if ( ptr->ai_family == AF_INET ) {
+			const sockaddr_in * const sockData = ( const sockaddr_in * )ptr->ai_addr; // Set current address
 #if defined( __WIN_API__ )
             info->address.protocolV4[0] = sockData->sin_addr.S_un.S_un_b.s_b1;
             info->address.protocolV4[1] = sockData->sin_addr.S_un.S_un_b.s_b2;
@@ -325,8 +322,7 @@ bool xiSocket::DomainLookup( const char * const url, const uint16_t port, xiSock
 #elif defined( __POSIX__ )
             memcpy( &info->address.protocolV4[0], &sockData->sin_addr.s_addr, sizeof( sockData->sin_addr.s_addr ) );
 #endif
-
-			break;
+			break; // Escape the linked list crawl
 		}
 	}
     
