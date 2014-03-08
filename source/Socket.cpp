@@ -19,6 +19,9 @@
     using namespace WinSock;
 #elif defined( __POSIX__ )
     #include <string.h>
+    #include <sys/types.h>
+    #include <sys/socket.h>
+    #include <netdb.h>
 #endif
 
 const uint16_t	xiSocket::PORT_ANY = 0;
@@ -314,14 +317,20 @@ bool xiSocket::DomainLookup( const char * const url, const uint16_t port, xiSock
 		switch( ptr->ai_family ) {
 		case AF_INET:
 			const sockaddr_in * const sockData = ( const sockaddr_in * )ptr->ai_addr;//set current address
-			info->address.protocolV4[0] = sockData->sin_addr.S_un.S_un_b.s_b1;
-			info->address.protocolV4[1] = sockData->sin_addr.S_un.S_un_b.s_b2;
-			info->address.protocolV4[2] = sockData->sin_addr.S_un.S_un_b.s_b3;
-			info->address.protocolV4[3] = sockData->sin_addr.S_un.S_un_b.s_b4;
+#if defined( __WIN_API__ )
+            info->address.protocolV4[0] = sockData->sin_addr.S_un.S_un_b.s_b1;
+            info->address.protocolV4[1] = sockData->sin_addr.S_un.S_un_b.s_b2;
+            info->address.protocolV4[2] = sockData->sin_addr.S_un.S_un_b.s_b3;
+            info->address.protocolV4[3] = sockData->sin_addr.S_un.S_un_b.s_b4;
+#elif defined( __POSIX__ )
+            memcpy( &info->address.protocolV4[0], &sockData->sin_addr.s_addr, sizeof( sockData->sin_addr.s_addr ) );
+#endif
 
 			break;
 		}
 	}
+    
+    freeaddrinfo( res );
 	
 	return true;
 }
