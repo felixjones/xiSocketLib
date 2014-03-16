@@ -33,9 +33,9 @@ Release_Implicitly_Linked_Objects=
 Release64_Implicitly_Linked_Objects=
 
 # Compiler flags...
-Debug_Compiler_Flags=-O0 -std=c++0x
+Debug_Compiler_Flags=-O0 -std=c++0x -m32
 Debug64_Compiler_Flags=-O0 -std=c++0x -m64
-Release_Compiler_Flags=-O2 -std=c++0x
+Release_Compiler_Flags=-O2 -std=c++0x -m32
 Release64_Compiler_Flags=-O2 -std=c++0x -m64
 
 # Builds all configurations for this project...
