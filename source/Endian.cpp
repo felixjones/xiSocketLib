@@ -25,6 +25,9 @@
 #elif defined( __WIN_API__ )
 	#define ntohll( x ) ( ( ( int64_t )( ntohl( ( int32_t )( ( x << 32 ) >> 32 ) ) ) << 32) | ( uint32_t )ntohl( ( ( int32_t )( x >> 32 ) ) ) )
 	#define htonll( x ) ntohll( x )
+#elif defined( __LINUX__ )
+	#define ntohll( x ) be64toh( x )
+	#define htonll( x ) htobe64( x )
 #endif
 
 /*
