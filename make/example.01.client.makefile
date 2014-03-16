@@ -62,7 +62,7 @@ Debug64: create_folders x64/gccDebug/example.01.client/main.o
 -include x64/gccDebug/example.01.client/main.d
 x64/gccDebug/example.01.client/main.o: ../examples/example.01.client/main.cpp
 	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -c ../examples/example.01.client/main.cpp $(Debug64_Include_Path) -o x64/gccDebug/example.01.client/main.o
-	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -MM ../examples/example.01.client/main.cpp $(Debug64_Include_Path) > x64/gccDebug/main.d
+	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -MM ../examples/example.01.client/main.cpp $(Debug64_Include_Path) > x64/gccDebug/example.01.client/main.d
 
 # Builds the Release configuration...
 .PHONY: Release
