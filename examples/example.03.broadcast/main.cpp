@@ -44,16 +44,15 @@ int main( int argc, char ** argv ) {
 			tutorial = false; // Disable the tutorial message for future runs
 		}
 		printf( "> " ); // Show the text input indicator
-
-#if defined( __WIN_API__ )
-		fflush( stdin );
-#elif defined( __POSIX__ )
-		fpurge( stdin );
-#endif
-
+		
 		const int scanState = scanf( BUFFER_STR, buffer ); // See BUFFER_STR above
 		// BUFFER_STR is set to allow text, numbers, spaces and colons
 		// Scanf will block while the user inputs text into buffer
+		
+		{ // Clear input buffer
+			int ch;
+			while ( ( ch = getchar() ) != EOF && ch != '\n' );
+		}
 
 		if ( scanState <= 0 ) {
 			// Error with scanf
