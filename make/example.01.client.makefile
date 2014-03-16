@@ -47,44 +47,44 @@ build_all_configurations: Debug Debug64 Release Release64
 Debug: create_folders gccDebug/example.01.client/main.o 
 	g++ gccDebug/example.01.client/main.o  $(Debug_Library_Path) $(Debug_Libraries) -Wl,-rpath,./ -o gccDebug/example.01.client.bin
 
-# Compiles file../examples/example.01.client/main.cpp for the Debug configuration...
+# Compiles file ../examples/example.01.client/main.cpp for the Debug configuration...
 -include gccDebug/example.01.client/main.d
-gccDebug/example.01.client/main.o:../examples/example.01.client/main.cpp
-	$(CPP_COMPILER) $(Debug_Preprocessor_Definitions) $(Debug_Compiler_Flags) -c../examples/example.01.client/main.cpp $(Debug_Include_Path) -o gccDebug/example.01.client/main.o
-	$(CPP_COMPILER) $(Debug_Preprocessor_Definitions) $(Debug_Compiler_Flags) -MM../examples/example.01.client/main.cpp $(Debug_Include_Path) > gccDebug/example.01.client/main.d
+gccDebug/example.01.client/main.o: ../examples/example.01.client/main.cpp
+	$(CPP_COMPILER) $(Debug_Preprocessor_Definitions) $(Debug_Compiler_Flags) -c ../examples/example.01.client/main.cpp $(Debug_Include_Path) -o gccDebug/example.01.client/main.o
+	$(CPP_COMPILER) $(Debug_Preprocessor_Definitions) $(Debug_Compiler_Flags) -MM ../examples/example.01.client/main.cpp $(Debug_Include_Path) > gccDebug/example.01.client/main.d
 
 # Builds the Debug configuration...
 .PHONY: Debug64
 Debug64: create_folders x64/gccDebug/example.01.client/main.o 
 	g++ x64/gccDebug/example.01.client/main.o  $(Debug64_Library_Path) $(Debug64_Libraries) -Wl,-rpath,./ -o x64/gccDebug/example.01.client.bin
 
-# Compiles file../examples/example.01.client/main.cpp for the Debug configuration...
+# Compiles file ../examples/example.01.client/main.cpp for the Debug configuration...
 -include x64/gccDebug/main.d
-x64/gccDebug/example.01.client/main.o:../examples/example.01.client/main.cpp
-	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -c../examples/example.01.client/main.cpp $(Debug64_Include_Path) -o x64/gccDebug/example.01.client/main.o
-	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -MM../examples/example.01.client/main.cpp $(Debug64_Include_Path) > x64/gccDebug/main.d
+x64/gccDebug/example.01.client/main.o: ../examples/example.01.client/main.cpp
+	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -c ../examples/example.01.client/main.cpp $(Debug64_Include_Path) -o x64/gccDebug/example.01.client/main.o
+	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -MM ../examples/example.01.client/main.cpp $(Debug64_Include_Path) > x64/gccDebug/main.d
 
 # Builds the Release configuration...
 .PHONY: Release
 Release: create_folders gccRelease/example.01.client/main.o 
 	g++ gccRelease/example.01.client/main.o  $(Release_Library_Path) $(Release_Libraries) -Wl,-rpath,./ -o gccRelease/example.01.client.bin
 
-# Compiles file../examples/example.01.client/main.cpp for the Release configuration...
+# Compiles file ../examples/example.01.client/main.cpp for the Release configuration...
 -include gccRelease/main.d
-gccRelease/example.01.client/main.o:../examples/example.01.client/main.cpp
-	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -c../examples/example.01.client/main.cpp $(Release_Include_Path) -o gccRelease/example.01.client/main.o
-	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -MM../examples/example.01.client/main.cpp $(Release_Include_Path) > gccRelease/main.d
+gccRelease/example.01.client/main.o: ../examples/example.01.client/main.cpp
+	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -c ../examples/example.01.client/main.cpp $(Release_Include_Path) -o gccRelease/example.01.client/main.o
+	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -MM ../examples/example.01.client/main.cpp $(Release_Include_Path) > gccRelease/main.d
 
 # Builds the Release configuration...
 .PHONY: Release64
 Release64: create_folders x64/gccRelease/example.01.client/main.o 
 	g++ x64/gccRelease/example.01.client/main.o  $(Release64_Library_Path) $(Release64_Libraries) -Wl,-rpath,./ -o x64/gccRelease/example.01.client.bin
 
-# Compiles file../examples/example.01.client/main.cpp for the Release configuration...
+# Compiles file ../examples/example.01.client/main.cpp for the Release configuration...
 -include x64/gccRelease/main.d
-x64/gccRelease/example.01.client/main.o:../examples/example.01.client/main.cpp
-	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -c../examples/example.01.client/main.cpp $(Release64_Include_Path) -o x64/gccRelease/example.01.client/main.o
-	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -MM../examples/example.01.client/main.cpp $(Release64_Include_Path) > x64/gccRelease/main.d
+x64/gccRelease/example.01.client/main.o: ../examples/example.01.client/main.cpp
+	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -c ../examples/example.01.client/main.cpp $(Release64_Include_Path) -o x64/gccRelease/example.01.client/main.o
+	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -MM ../examples/example.01.client/main.cpp $(Release64_Include_Path) > x64/gccRelease/main.d
 
 # Creates the intermediate and output folders for each configuration...
 .PHONY: create_folders
