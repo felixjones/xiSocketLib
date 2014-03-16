@@ -45,7 +45,7 @@ build_all_configurations: Debug Debug Release Release
 # Builds the Debug configuration...
 .PHONY: Debug
 Debug: create_folders gccDebug/main.o 
-	g++ gccDebug/main.o  $(Debug_Library_Path) $(Debug_Libraries) -Wl,-rpath,./ -o ../../vs2010/gccDebug/example.02.client.exe
+	g++ gccDebug/main.o  $(Debug_Library_Path) $(Debug_Libraries) -Wl,-rpath,./ -o gccDebug/example.02.client.exe
 
 # Compiles file main.cpp for the Debug configuration...
 -include gccDebug/main.d
@@ -56,7 +56,7 @@ gccDebug/main.o: main.cpp
 # Builds the Debug configuration...
 .PHONY: Debug
 Debug: create_folders x64/gccDebug/main.o 
-	g++ x64/gccDebug/main.o  $(Debug_Library_Path) $(Debug_Libraries) -Wl,-rpath,./ -o ../../vs2010/x64/gccDebug/example.02.client.exe
+	g++ x64/gccDebug/main.o  $(Debug_Library_Path) $(Debug_Libraries) -Wl,-rpath,./ -o x64/gccDebug/example.02.client.exe
 
 # Compiles file main.cpp for the Debug configuration...
 -include x64/gccDebug/main.d
@@ -67,7 +67,7 @@ x64/gccDebug/main.o: main.cpp
 # Builds the Release configuration...
 .PHONY: Release
 Release: create_folders gccRelease/main.o 
-	g++ gccRelease/main.o  $(Release_Library_Path) $(Release_Libraries) -Wl,-rpath,./ -o ../../vs2010/gccRelease/example.02.client.exe
+	g++ gccRelease/main.o  $(Release_Library_Path) $(Release_Libraries) -Wl,-rpath,./ -o gccRelease/example.02.client.exe
 
 # Compiles file main.cpp for the Release configuration...
 -include gccRelease/main.d
@@ -78,7 +78,7 @@ gccRelease/main.o: main.cpp
 # Builds the Release configuration...
 .PHONY: Release
 Release: create_folders x64/gccRelease/main.o 
-	g++ x64/gccRelease/main.o  $(Release_Library_Path) $(Release_Libraries) -Wl,-rpath,./ -o ../../vs2010/x64/gccRelease/example.02.client.exe
+	g++ x64/gccRelease/main.o  $(Release_Library_Path) $(Release_Libraries) -Wl,-rpath,./ -o x64/gccRelease/example.02.client.exe
 
 # Compiles file main.cpp for the Release configuration...
 -include x64/gccRelease/main.d
@@ -90,39 +90,39 @@ x64/gccRelease/main.o: main.cpp
 .PHONY: create_folders
 create_folders:
 	mkdir -p gccDebug/source
-	mkdir -p ../../vs2010/gccDebug
+	mkdir -p gccDebug
 	mkdir -p x64/gccDebug/source
-	mkdir -p ../../vs2010/x64/gccDebug
+	mkdir -p x64/gccDebug
 	mkdir -p gccRelease/source
-	mkdir -p ../../vs2010/gccRelease
+	mkdir -p gccRelease
 	mkdir -p x64/gccRelease/source
-	mkdir -p ../../vs2010/x64/gccRelease
+	mkdir -p x64/gccRelease
 
 # Cleans intermediate and output files (objects, libraries, executables)...
 .PHONY: clean
 clean:
 	rm -f gccDebug/*.o
 	rm -f gccDebug/*.d
-	rm -f ../../vs2010/gccDebug/*.a
-	rm -f ../../vs2010/gccDebug/*.so
-	rm -f ../../vs2010/gccDebug/*.dll
-	rm -f ../../vs2010/gccDebug/*.exe
+	rm -f gccDebug/*.a
+	rm -f gccDebug/*.so
+	rm -f gccDebug/*.dll
+	rm -f gccDebug/*.exe
 	rm -f x64/gccDebug/*.o
 	rm -f x64/gccDebug/*.d
-	rm -f ../../vs2010/x64/gccDebug/*.a
-	rm -f ../../vs2010/x64/gccDebug/*.so
-	rm -f ../../vs2010/x64/gccDebug/*.dll
-	rm -f ../../vs2010/x64/gccDebug/*.exe
+	rm -f x64/gccDebug/*.a
+	rm -f x64/gccDebug/*.so
+	rm -f x64/gccDebug/*.dll
+	rm -f x64/gccDebug/*.exe
 	rm -f gccRelease/*.o
 	rm -f gccRelease/*.d
-	rm -f ../../vs2010/gccRelease/*.a
-	rm -f ../../vs2010/gccRelease/*.so
-	rm -f ../../vs2010/gccRelease/*.dll
-	rm -f ../../vs2010/gccRelease/*.exe
+	rm -f gccRelease/*.a
+	rm -f gccRelease/*.so
+	rm -f gccRelease/*.dll
+	rm -f gccRelease/*.exe
 	rm -f x64/gccRelease/*.o
 	rm -f x64/gccRelease/*.d
-	rm -f ../../vs2010/x64/gccRelease/*.a
-	rm -f ../../vs2010/x64/gccRelease/*.so
-	rm -f ../../vs2010/x64/gccRelease/*.dll
-	rm -f ../../vs2010/x64/gccRelease/*.exe
+	rm -f x64/gccRelease/*.a
+	rm -f x64/gccRelease/*.so
+	rm -f x64/gccRelease/*.dll
+	rm -f x64/gccRelease/*.exe
 
