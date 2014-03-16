@@ -4,43 +4,43 @@ C_COMPILER = gcc
 
 # Include paths...
 Debug_Include_Path=-I"../include" 
-Debug_Include_Path=-I"../include" 
+Debug64_Include_Path=-I"../include" 
 Release_Include_Path=-I"../include" 
-Release_Include_Path=-I"../include" 
+Release64_Include_Path=-I"../include" 
 
 # Library paths...
 Debug_Library_Path=
-Debug_Library_Path=
+Debug64_Library_Path=
 Release_Library_Path=
-Release_Library_Path=
+Release64_Library_Path=
 
 # Additional libraries...
 Debug_Libraries=
-Debug_Libraries=
+Debug64_Libraries=
 Release_Libraries=
-Release_Libraries=
+Release64_Libraries=
 
 # Preprocessor definitions...
 Debug_Preprocessor_Definitions=-D GCC_BUILD -D _DEBUG -D _LIB 
-Debug_Preprocessor_Definitions=-D _DEBUG -D _LIB -D GCC_BUILD 
+Debug64_Preprocessor_Definitions=-D _DEBUG -D _LIB -D GCC_BUILD 
 Release_Preprocessor_Definitions=-D GCC_BUILD -D NDEBUG -D _LIB 
-Release_Preprocessor_Definitions=-D NDEBUG -D _LIB -D GCC_BUILD 
+Release64_Preprocessor_Definitions=-D NDEBUG -D _LIB -D GCC_BUILD 
 
 # Implictly linked object files...
 Debug_Implicitly_Linked_Objects=
-Debug_Implicitly_Linked_Objects=
+Debug64_Implicitly_Linked_Objects=
 Release_Implicitly_Linked_Objects=
-Release_Implicitly_Linked_Objects=
+Release64_Implicitly_Linked_Objects=
 
 # Compiler flags...
 Debug_Compiler_Flags=-O0 -std=c++0x
-Debug_Compiler_Flags=-O0 -std=c++0x
+Debug64_Compiler_Flags=-O0 -std=c++0x -m64
 Release_Compiler_Flags=-O2 -std=c++0x
-Release_Compiler_Flags=-O2 -std=c++0x
+Release64_Compiler_Flags=-O2 -std=c++0x -m64
 
 # Builds all configurations for this project...
 .PHONY: build_all_configurations
-build_all_configurations: Debug Debug Release Release 
+build_all_configurations: Debug Debug64 Release Release64 
 
 # Builds the Debug configuration...
 .PHONY: Debug
@@ -90,7 +90,7 @@ gccDebug/source/UDP.o: ../source/UDP.cpp
 	$(CPP_COMPILER) $(Debug_Preprocessor_Definitions) $(Debug_Compiler_Flags) -MM ../source/UDP.cpp $(Debug_Include_Path) > gccDebug/source/UDP.d
 
 # Builds the Debug configuration...
-.PHONY: Debug
+.PHONY: Debug64
 Debug: create_folders x64/gccDebug/source/Endian.o x64/gccDebug/source/NetString.o x64/gccDebug/source/ProtoBase.o x64/gccDebug/source/SmartPointer.o x64/gccDebug/source/Socket.o x64/gccDebug/source/TCP.o x64/gccDebug/source/UDP.o 
 	ar rcs x64/gccDebug/libxiSock64_d.a x64/gccDebug/source/Endian.o x64/gccDebug/source/NetString.o x64/gccDebug/source/ProtoBase.o x64/gccDebug/source/SmartPointer.o x64/gccDebug/source/Socket.o x64/gccDebug/source/TCP.o x64/gccDebug/source/UDP.o  $(Debug_Implicitly_Linked_Objects)
 
@@ -184,7 +184,7 @@ gccRelease/source/UDP.o: ../source/UDP.cpp
 	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -MM ../source/UDP.cpp $(Release_Include_Path) > gccRelease/source/UDP.d
 
 # Builds the Release configuration...
-.PHONY: Release
+.PHONY: Release64
 Release: create_folders x64/gccRelease/source/Endian.o x64/gccRelease/source/NetString.o x64/gccRelease/source/ProtoBase.o x64/gccRelease/source/SmartPointer.o x64/gccRelease/source/Socket.o x64/gccRelease/source/TCP.o x64/gccRelease/source/UDP.o 
 	ar rcs x64/gccRelease/libxiSock64.a x64/gccRelease/source/Endian.o x64/gccRelease/source/NetString.o x64/gccRelease/source/ProtoBase.o x64/gccRelease/source/SmartPointer.o x64/gccRelease/source/Socket.o x64/gccRelease/source/TCP.o x64/gccRelease/source/UDP.o  $(Release_Implicitly_Linked_Objects)
 
