@@ -1,6 +1,6 @@
 # Builds all the projects in the solution...
 .PHONY: all_projects
-all_projects: xiSock example.01.server example.01.client example.02.client example.02.server example.03.broadcast 
+all_projects: xiSock example.01.client example.01.server example.02.client example.02.server example.03.broadcast 
 
 # Builds project 'xiSock'...
 .PHONY: xiSock

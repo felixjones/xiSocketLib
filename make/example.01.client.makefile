@@ -22,9 +22,9 @@ Release64_Libraries=-lxiSock64
 
 # Preprocessor definitions...
 Debug_Preprocessor_Definitions=-D GCC_BUILD -D _DEBUG -D _CONSOLE 
-Debug64_Preprocessor_Definitions=-D _DEBUG -D _CONSOLE -D GCC_BUILD 
+Debug64_Preprocessor_Definitions=-D GCC_BUILD -D _DEBUG -D _CONSOLE
 Release_Preprocessor_Definitions=-D GCC_BUILD -D NDEBUG -D _CONSOLE 
-Release64_Preprocessor_Definitions=-D NDEBUG -D _CONSOLE -D GCC_BUILD 
+Release64_Preprocessor_Definitions=-D GCC_BUILD -D NDEBUG -D _CONSOLE
 
 # Implictly linked object files...
 Debug_Implicitly_Linked_Objects=
@@ -59,7 +59,7 @@ Debug64: create_folders x64/gccDebug/example.01.client/main.o
 	g++ x64/gccDebug/example.01.client/main.o -static $(Debug64_Library_Path) $(Debug64_Libraries) -Wl,-rpath,./ -o x64/gccDebug/example.01.client.bin
 
 # Compiles file ../examples/example.01.client/main.cpp for the Debug configuration...
--include x64/gccDebug/main.d
+-include x64/gccDebug/example.01.client/main.d
 x64/gccDebug/example.01.client/main.o: ../examples/example.01.client/main.cpp
 	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -c ../examples/example.01.client/main.cpp $(Debug64_Include_Path) -o x64/gccDebug/example.01.client/main.o
 	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -MM ../examples/example.01.client/main.cpp $(Debug64_Include_Path) > x64/gccDebug/main.d
@@ -70,7 +70,7 @@ Release: create_folders gccRelease/example.01.client/main.o
 	g++ gccRelease/example.01.client/main.o -static $(Release_Library_Path) $(Release_Libraries) -Wl,-rpath,./ -o gccRelease/example.01.client.bin
 
 # Compiles file ../examples/example.01.client/main.cpp for the Release configuration...
--include gccRelease/main.d
+-include gccRelease/example.01.client/main.d
 gccRelease/example.01.client/main.o: ../examples/example.01.client/main.cpp
 	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -c ../examples/example.01.client/main.cpp $(Release_Include_Path) -o gccRelease/example.01.client/main.o
 	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -MM ../examples/example.01.client/main.cpp $(Release_Include_Path) > gccRelease/main.d
@@ -81,7 +81,7 @@ Release64: create_folders x64/gccRelease/example.01.client/main.o
 	g++ x64/gccRelease/example.01.client/main.o -static $(Release64_Library_Path) $(Release64_Libraries) -Wl,-rpath,./ -o x64/gccRelease/example.01.client.bin
 
 # Compiles file ../examples/example.01.client/main.cpp for the Release configuration...
--include x64/gccRelease/main.d
+-include x64/gccRelease/example.01.client/main.d
 x64/gccRelease/example.01.client/main.o: ../examples/example.01.client/main.cpp
 	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -c ../examples/example.01.client/main.cpp $(Release64_Include_Path) -o x64/gccRelease/example.01.client/main.o
 	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -MM ../examples/example.01.client/main.cpp $(Release64_Include_Path) > x64/gccRelease/main.d

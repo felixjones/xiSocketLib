@@ -22,9 +22,9 @@ Release64_Libraries=
 
 # Preprocessor definitions...
 Debug_Preprocessor_Definitions=-D GCC_BUILD -D _DEBUG -D _LIB 
-Debug64_Preprocessor_Definitions=-D _DEBUG -D _LIB -D GCC_BUILD 
+Debug64_Preprocessor_Definitions=-D GCC_BUILD -D _DEBUG -D _LIB
 Release_Preprocessor_Definitions=-D GCC_BUILD -D NDEBUG -D _LIB 
-Release64_Preprocessor_Definitions=-D NDEBUG -D _LIB -D GCC_BUILD 
+Release64_Preprocessor_Definitions=-D GCC_BUILD -D NDEBUG -D _LIB
 
 # Implictly linked object files...
 Debug_Implicitly_Linked_Objects=
@@ -33,10 +33,10 @@ Release_Implicitly_Linked_Objects=
 Release64_Implicitly_Linked_Objects=
 
 # Compiler flags...
-Debug_Compiler_Flags=-O0 -g -std=c++0x -static-libgcc -m32
-Debug64_Compiler_Flags=-O0 -g -std=c++0x -static-libgcc -m64
-Release_Compiler_Flags=-O2 -std=c++0x -static-libgcc -m32
-Release64_Compiler_Flags=-O2 -std=c++0x -static-libgcc -m64
+Debug_Compiler_Flags=-O0 -g -std=c++0x -m32
+Debug64_Compiler_Flags=-O0 -g -std=c++0x -m64
+Release_Compiler_Flags=-O2 -std=c++0x -m32
+Release64_Compiler_Flags=-O2 -std=c++0x -m64
 
 # Builds all configurations for this project...
 .PHONY: build_all_configurations
