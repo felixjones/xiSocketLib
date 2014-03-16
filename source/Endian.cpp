@@ -4,7 +4,12 @@
 
 #if defined( __POSIX__ )
 	#include <arpa/inet.h>
-	#include <machine/endian.h>
+
+	#if defined( __OS_X__ )
+		#include <machine/endian.h>
+	#elif defined( __LINUX__ )
+		#include <endian.h>
+	#endif
 #elif defined( __WIN_API__ )
 	#include <WinSock2.h>
 #endif
