@@ -91,7 +91,7 @@ gccDebug/source/UDP.o: ../source/UDP.cpp
 
 # Builds the Debug configuration...
 .PHONY: Debug64
-Debug: create_folders x64/gccDebug/source/Endian.o x64/gccDebug/source/NetString.o x64/gccDebug/source/ProtoBase.o x64/gccDebug/source/SmartPointer.o x64/gccDebug/source/Socket.o x64/gccDebug/source/TCP.o x64/gccDebug/source/UDP.o 
+Debug64: create_folders x64/gccDebug/source/Endian.o x64/gccDebug/source/NetString.o x64/gccDebug/source/ProtoBase.o x64/gccDebug/source/SmartPointer.o x64/gccDebug/source/Socket.o x64/gccDebug/source/TCP.o x64/gccDebug/source/UDP.o 
 	ar rcs x64/gccDebug/libxiSock64_d.a x64/gccDebug/source/Endian.o x64/gccDebug/source/NetString.o x64/gccDebug/source/ProtoBase.o x64/gccDebug/source/SmartPointer.o x64/gccDebug/source/Socket.o x64/gccDebug/source/TCP.o x64/gccDebug/source/UDP.o  $(Debug64_Implicitly_Linked_Objects)
 
 # Compiles file ../source/Endian.cpp for the Debug configuration...
@@ -185,7 +185,7 @@ gccRelease/source/UDP.o: ../source/UDP.cpp
 
 # Builds the Release configuration...
 .PHONY: Release64
-Release: create_folders x64/gccRelease/source/Endian.o x64/gccRelease/source/NetString.o x64/gccRelease/source/ProtoBase.o x64/gccRelease/source/SmartPointer.o x64/gccRelease/source/Socket.o x64/gccRelease/source/TCP.o x64/gccRelease/source/UDP.o 
+Release64: create_folders x64/gccRelease/source/Endian.o x64/gccRelease/source/NetString.o x64/gccRelease/source/ProtoBase.o x64/gccRelease/source/SmartPointer.o x64/gccRelease/source/Socket.o x64/gccRelease/source/TCP.o x64/gccRelease/source/UDP.o 
 	ar rcs x64/gccRelease/libxiSock64.a x64/gccRelease/source/Endian.o x64/gccRelease/source/NetString.o x64/gccRelease/source/ProtoBase.o x64/gccRelease/source/SmartPointer.o x64/gccRelease/source/Socket.o x64/gccRelease/source/TCP.o x64/gccRelease/source/UDP.o  $(Release64_Implicitly_Linked_Objects)
 
 # Compiles file ../source/Endian.cpp for the Release configuration...
