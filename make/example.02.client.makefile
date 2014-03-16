@@ -3,10 +3,10 @@ CPP_COMPILER = g++
 C_COMPILER = gcc
 
 # Include paths...
-Debug_Include_Path=-I"../../include" 
-Debug_Include_Path=-I"../../include" 
-Release_Include_Path=-I"../../include" 
-Release_Include_Path=-I"../../include" 
+Debug_Include_Path=-I"../include" 
+Debug_Include_Path=-I"../include" 
+Release_Include_Path=-I"../include" 
+Release_Include_Path=-I"../include" 
 
 # Library paths...
 Debug_Library_Path=
@@ -22,9 +22,9 @@ Release_Libraries=
 
 # Preprocessor definitions...
 Debug_Preprocessor_Definitions=-D GCC_BUILD -D _DEBUG -D _CONSOLE 
-Debug_Preprocessor_Definitions=-D GCC_BUILD -D _DEBUG -D _CONSOLE 
+Debug_Preprocessor_Definitions=-D _DEBUG -D _CONSOLE -D GCC_BUILD 
 Release_Preprocessor_Definitions=-D GCC_BUILD -D NDEBUG -D _CONSOLE 
-Release_Preprocessor_Definitions=-D GCC_BUILD -D NDEBUG -D _CONSOLE 
+Release_Preprocessor_Definitions=-D NDEBUG -D _CONSOLE -D GCC_BUILD 
 
 # Implictly linked object files...
 Debug_Implicitly_Linked_Objects=
@@ -45,7 +45,7 @@ build_all_configurations: Debug Debug Release Release
 # Builds the Debug configuration...
 .PHONY: Debug
 Debug: create_folders gccDebug/main.o 
-	g++ gccDebug/main.o  $(Debug_Library_Path) $(Debug_Libraries) -Wl,-rpath,./ -o ../../vs2010/gccDebug/example.03.broadcast.exe
+	g++ gccDebug/main.o  $(Debug_Library_Path) $(Debug_Libraries) -Wl,-rpath,./ -o ../../vs2010/gccDebug/example.02.client.exe
 
 # Compiles file main.cpp for the Debug configuration...
 -include gccDebug/main.d
@@ -56,7 +56,7 @@ gccDebug/main.o: main.cpp
 # Builds the Debug configuration...
 .PHONY: Debug
 Debug: create_folders x64/gccDebug/main.o 
-	g++ x64/gccDebug/main.o  $(Debug_Library_Path) $(Debug_Libraries) -Wl,-rpath,./ -o ../../vs2010/x64/gccDebug/example.03.broadcast.exe
+	g++ x64/gccDebug/main.o  $(Debug_Library_Path) $(Debug_Libraries) -Wl,-rpath,./ -o ../../vs2010/x64/gccDebug/example.02.client.exe
 
 # Compiles file main.cpp for the Debug configuration...
 -include x64/gccDebug/main.d
@@ -67,7 +67,7 @@ x64/gccDebug/main.o: main.cpp
 # Builds the Release configuration...
 .PHONY: Release
 Release: create_folders gccRelease/main.o 
-	g++ gccRelease/main.o  $(Release_Library_Path) $(Release_Libraries) -Wl,-rpath,./ -o ../../vs2010/gccRelease/example.03.broadcast.exe
+	g++ gccRelease/main.o  $(Release_Library_Path) $(Release_Libraries) -Wl,-rpath,./ -o ../../vs2010/gccRelease/example.02.client.exe
 
 # Compiles file main.cpp for the Release configuration...
 -include gccRelease/main.d
@@ -78,7 +78,7 @@ gccRelease/main.o: main.cpp
 # Builds the Release configuration...
 .PHONY: Release
 Release: create_folders x64/gccRelease/main.o 
-	g++ x64/gccRelease/main.o  $(Release_Library_Path) $(Release_Libraries) -Wl,-rpath,./ -o ../../vs2010/x64/gccRelease/example.03.broadcast.exe
+	g++ x64/gccRelease/main.o  $(Release_Library_Path) $(Release_Libraries) -Wl,-rpath,./ -o ../../vs2010/x64/gccRelease/example.02.client.exe
 
 # Compiles file main.cpp for the Release configuration...
 -include x64/gccRelease/main.d
