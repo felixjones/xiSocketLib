@@ -9,16 +9,16 @@ Release_Include_Path=-I"../include"
 Release64_Include_Path=-I"../include" 
 
 # Library paths...
-Debug_Library_Path=
-Debug64_Library_Path=
-Release_Library_Path=
-Release64_Library_Path=
+Debug_Library_Path=-L"gccDebug/"
+Debug64_Library_Path=-L"x64/gccDebug/"
+Release_Library_Path=-L"gccRelease/"
+Release64_Library_Path=-L"x64/gccRelease/"
 
 # Additional libraries...
-Debug_Libraries=
-Debug64_Libraries=
-Release_Libraries=
-Release64_Libraries=
+Debug_Libraries=-lxiSock32_d.a
+Debug64_Libraries=-lxiSock64_d.a
+Release_Libraries=-lxiSock32.a
+Release64_Libraries=-lxiSock64.a
 
 # Preprocessor definitions...
 Debug_Preprocessor_Definitions=-D GCC_BUILD -D _DEBUG -D _CONSOLE 
