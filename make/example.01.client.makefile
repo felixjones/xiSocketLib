@@ -33,10 +33,10 @@ Release_Implicitly_Linked_Objects=
 Release64_Implicitly_Linked_Objects=
 
 # Compiler flags...
-Debug_Compiler_Flags=-O0 -g 
-Debug64_Compiler_Flags=-O0 -g -m64
-Release_Compiler_Flags=-O2 
-Release64_Compiler_Flags=-O2 -m64
+Debug_Compiler_Flags=-O0 -g -std=c++0x
+Debug64_Compiler_Flags=-O0 -g -std=c++0x -m64
+Release_Compiler_Flags=-O2 -std=c++0x
+Release64_Compiler_Flags=-O2 -std=c++0x -m64
 
 # Builds all configurations for this project...
 .PHONY: build_all_configurations
