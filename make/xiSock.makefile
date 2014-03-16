@@ -246,23 +246,23 @@ clean:
 	rm -f gccDebug/*.a
 	rm -f gccDebug/*.so
 	rm -f gccDebug/*.dll
-	rm -f gccDebug/*.exe
+	rm -f gccDebug/*.bin
 	rm -f x64/gccDebug/*.o
 	rm -f x64/gccDebug/*.d
 	rm -f x64/gccDebug/*.a
 	rm -f x64/gccDebug/*.so
 	rm -f x64/gccDebug/*.dll
-	rm -f x64/gccDebug/*.exe
+	rm -f x64/gccDebug/*.bin
 	rm -f gccRelease/*.o
 	rm -f gccRelease/*.d
 	rm -f gccRelease/*.a
 	rm -f gccRelease/*.so
 	rm -f gccRelease/*.dll
-	rm -f gccRelease/*.exe
+	rm -f gccRelease/*.bin
 	rm -f x64/gccRelease/*.o
 	rm -f x64/gccRelease/*.d
 	rm -f x64/gccRelease/*.a
 	rm -f x64/gccRelease/*.so
 	rm -f x64/gccRelease/*.dll
-	rm -f x64/gccRelease/*.exe
+	rm -f x64/gccRelease/*.bin
 
