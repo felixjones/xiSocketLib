@@ -5,14 +5,14 @@
 
 #if defined( __POSIX__ )
 	#include <arpa/inet.h>
-    #include <sys/socket.h>
-    #include <string.h>
+	#include <sys/socket.h>
+	#include <string.h>
 #elif defined( __WIN_API__ )
 	#include <WinSock2.h>
 #endif
 
 #if defined( __OS_X__ )
-    #define INVALID_SOCKET  ( -1 )
+	#define INVALID_SOCKET  ( -1 )
 #endif
 
 #if defined( __WIN_API__ )
@@ -121,6 +121,10 @@ xiUDP::SendBufferToAddress
 ====================
 */
 byteLen_t xiUDP::SendBufferToAddress( const char * const buffer, const int32_t bufferLength, const addressInfo_s * const targetInfo ) {
+	if ( SetBroadcasting( false ) == false ) {
+		return -1; // Could not disable broadcasting
+	}
+
 	sockaddr_in target;
 	int targetLength = ( int )sizeof( target );
 	memset( &target, 0, sizeof( target ) );
@@ -152,9 +156,8 @@ xiUDP::BroadcastBuffer
 ====================
 */
 byteLen_t xiUDP::BroadcastBuffer( const char * const buffer, const int32_t bufferLength, const uint16_t port ) {
-	if ( broadcastAllowed == false ) {
-		// Broadcasting not allowed!
-		return 0;
+	if ( SetBroadcasting( true ) == false ) {
+		return -1; // Could not enable broadcasting
 	}
 
 	sockaddr_in target;

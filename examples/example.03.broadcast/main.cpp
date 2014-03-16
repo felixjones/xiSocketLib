@@ -29,10 +29,8 @@ int main( int argc, char ** argv ) {
 	xiUDP * const udpSocket = xiUDP::CreateOnPort( xiSocket::PORT_ANY );
 	
 	if ( udpSocket ) {
-		udpSocket->SetBroadcasting( true );
-
 		// Notify that we have successfully opened a socket
-		printf( "Client started on port %u\n", udpSocket->GetPort() );
+		printf( "Client started on port %u\n", udpSocket->GetPortV4() );
 	}
 
 	while ( udpSocket && isRunning ) {

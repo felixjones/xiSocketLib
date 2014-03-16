@@ -5,12 +5,12 @@
 
 #if defined( __POSIX__ )
 	#include <arpa/inet.h>
-    #include <sys/socket.h>
+	#include <sys/socket.h>
 	#include <fcntl.h>
-    #include <unistd.h>
-    #include <string.h>
+	#include <unistd.h>
+	#include <string.h>
 
-    #define closesocket( x )    close( x )
+	#define closesocket( x )    close( x )
 
 	#if !defined( SOCKET_ERROR )
 		#define SOCKET_ERROR    ( -1 )
@@ -91,7 +91,10 @@ xiProtoBase::SetBroadcasting
 ====================
 */
 bool xiProtoBase::SetBroadcasting( const bool doBroadcast ) {
-	if ( doBroadcast ) {
+	if ( broadcastAllowed == doBroadcast ) {
+		// This broadcast option is already set
+		return true;
+	} else if ( doBroadcast ) {
 		int val = 1;
 		const int optStatus = setsockopt( nativeHandle, SOL_SOCKET, SO_BROADCAST, ( char * )&val, sizeof( int ) );
 		if ( optStatus != SOCKET_ERROR ) {
@@ -168,12 +171,12 @@ void xiProtoBase::SetSendBufferLength( const int32_t length ) {
 
 /*
 ====================
-xiProtoBase::GetPort
+xiProtoBase::GetPortV4
 
 	Returns the bound port of this socket
 ====================
 */
-uint16_t xiProtoBase::GetPort() const {
+uint16_t xiProtoBase::GetPortV4() const {
 	sockaddr_in addressInfo;
 	socketLen_t infoLen = sizeof( addressInfo );
 	if ( getsockname( nativeHandle, ( sockaddr * )&addressInfo, &infoLen ) != -1 ) {

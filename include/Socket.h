@@ -15,6 +15,7 @@
 #endif
 
 #define IP_V4_BYTE_LEN	( 4 )
+#define IP_V6_BYTE_LEN	( 16 )
 
 /*
 ================================================================================
@@ -37,6 +38,7 @@ public:
 	struct addressInfo_s {
 		union address_u {
 			uint8_t	protocolV4[IP_V4_BYTE_LEN];
+			uint8_t	protocolV6[IP_V6_BYTE_LEN];
 		} address;
 
 		uint16_t	port;
@@ -56,7 +58,7 @@ public:
 	static byteLen_t	WriteInt64( char * const buffer, const void * const varptr );
 	static byteLen_t	WriteBytes( char * const buffer, const uint8_t * const byteptr, const byteLen_t byteLen );
 	static byteLen_t	WriteString( char * const buffer, const char * const byteptr );
-	static bool			DomainLookup( const char * const url, const uint16_t port, xiSocket::addressInfo_s * const info );
+	static bool			DomainLookupV4( const char * const url, const uint16_t port, xiSocket::addressInfo_s * const info );
 
 	static const uint16_t	PORT_ANY;
 protected:

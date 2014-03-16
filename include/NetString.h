@@ -8,6 +8,8 @@
 ================================================================================
 
 	Functions for converting from byte array IP addresses to human readable strings
+	Note: There is currently (As of this writing) not standard way of writing v6 addresses
+	IPv6 support will come in the future
 
 ================================================================================
 */

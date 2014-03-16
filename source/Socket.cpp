@@ -6,22 +6,22 @@
 #include "Endian.h"
 
 #if defined( __WIN_API__ )
-    #pragma comment( lib, "Ws2_32.lib" )
+	#pragma comment( lib, "Ws2_32.lib" )
 
-    #include <WinSock2.h>
+	#include <WinSock2.h>
 	#include <WS2tcpip.h>
 
-    namespace WinSock {
-        uint32_t	winsockReferenceCount = 0;
-        WSADATA		winSockData;
-    }
+	namespace WinSock {
+		uint32_t	winsockReferenceCount = 0;
+		WSADATA		winSockData;
+	}
 
-    using namespace WinSock;
+	using namespace WinSock;
 #elif defined( __POSIX__ )
-    #include <string.h>
-    #include <sys/types.h>
-    #include <sys/socket.h>
-    #include <netdb.h>
+	#include <string.h>
+	#include <sys/types.h>
+	#include <sys/socket.h>
+	#include <netdb.h>
 #endif
 
 const uint16_t	xiSocket::PORT_ANY = 0;
@@ -274,7 +274,7 @@ byteLen_t xiSocket::WriteString( char * const buffer, const char * const byteptr
 
 /*
 ====================
-xiSocket::DomainLookup
+xiSocket::DomainLookupV4
 
 	Takes a url as a string and performs DNS to return the address information
 	URL is in the format a://b.c.d:p/d.i
@@ -287,7 +287,7 @@ xiSocket::DomainLookup
 	i : ignored file extension
 ====================
 */
-bool xiSocket::DomainLookup( const char * const url, const uint16_t port, xiSocket::addressInfo_s * const info ) {
+bool xiSocket::DomainLookupV4( const char * const url, const uint16_t port, xiSocket::addressInfo_s * const info ) {
 #if defined( __WIN_API__ )
 	xiSocket openSocket; // We do this to kick off WinSock if it hasn't yet started
 #endif

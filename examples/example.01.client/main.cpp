@@ -30,7 +30,7 @@ int main( int argc, char ** argv ) {
 	
 	if ( udpSocket ) {
 		// Notify that we have successfully opened a socket
-		printf( "Client started on port %u\n", udpSocket->GetPort() );
+		printf( "Client started on port %u\n", udpSocket->GetPortV4() );
 	}
 
 	while ( udpSocket && isRunning ) {
