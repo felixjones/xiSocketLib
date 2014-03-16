@@ -40,7 +40,7 @@ Release64_Compiler_Flags=-O2 -std=c++0x -m64
 
 # Builds all configurations for this project...
 .PHONY: build_all_configurations
-build_all_configurations: Debug Debug64 Release Release64 
+build_all_configurations: Debug Release 
 
 # Builds the Debug configuration...
 .PHONY: Debug
