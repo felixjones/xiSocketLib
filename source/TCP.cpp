@@ -11,15 +11,13 @@
 	#if !defined( SOCKET_ERROR )
 		#define SOCKET_ERROR    ( -1 )
 	#endif
+
+	#if !defined( INVALID_SOCKET )
+		#define INVALID_SOCKET  ( -1 )
+	#endif
 #elif defined( __WIN_API__ )
 	#include <WinSock2.h>
-#endif
 
-#if defined( __OS_X__ )
-	#define INVALID_SOCKET  ( -1 )
-#endif
-
-#if defined( __WIN_API__ )
 	typedef int socklen_t;
 #endif
 
