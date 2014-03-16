@@ -89,13 +89,13 @@ x64/gccRelease/example.01.client/main.o: ../examples/example.01.client/main.cpp
 # Creates the intermediate and output folders for each configuration...
 .PHONY: create_folders
 create_folders:
-	mkdir -p gccDebug/source
+	mkdir -p gccDebug/example.01.client
 	mkdir -p gccDebug
-	mkdir -p x64/gccDebug/source
+	mkdir -p x64/gccDebug/example.01.client
 	mkdir -p x64/gccDebug
-	mkdir -p gccRelease/source
+	mkdir -p gccRelease/example.01.client
 	mkdir -p gccRelease
-	mkdir -p x64/gccRelease/source
+	mkdir -p x64/gccRelease/example.01.client
 	mkdir -p x64/gccRelease
 
 # Cleans intermediate and output files (objects, libraries, executables)...
