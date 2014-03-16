@@ -22,9 +22,9 @@ Release_Libraries=
 
 # Preprocessor definitions...
 Debug_Preprocessor_Definitions=-D GCC_BUILD -D _DEBUG -D _CONSOLE 
-Debug_Preprocessor_Definitions=-D WIN64 -D _DEBUG -D _CONSOLE -D GCC_BUILD 
+Debug_Preprocessor_Definitions=-D _DEBUG -D _CONSOLE -D GCC_BUILD 
 Release_Preprocessor_Definitions=-D GCC_BUILD -D NDEBUG -D _CONSOLE 
-Release_Preprocessor_Definitions=-D WIN64 -D NDEBUG -D _CONSOLE -D GCC_BUILD 
+Release_Preprocessor_Definitions=-D NDEBUG -D _CONSOLE -D GCC_BUILD 
 
 # Implictly linked object files...
 Debug_Implicitly_Linked_Objects=
