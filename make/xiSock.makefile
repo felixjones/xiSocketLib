@@ -92,49 +92,49 @@ gccDebug/source/UDP.o: ../source/UDP.cpp
 # Builds the Debug configuration...
 .PHONY: Debug64
 Debug: create_folders x64/gccDebug/source/Endian.o x64/gccDebug/source/NetString.o x64/gccDebug/source/ProtoBase.o x64/gccDebug/source/SmartPointer.o x64/gccDebug/source/Socket.o x64/gccDebug/source/TCP.o x64/gccDebug/source/UDP.o 
-	ar rcs x64/gccDebug/libxiSock64_d.a x64/gccDebug/source/Endian.o x64/gccDebug/source/NetString.o x64/gccDebug/source/ProtoBase.o x64/gccDebug/source/SmartPointer.o x64/gccDebug/source/Socket.o x64/gccDebug/source/TCP.o x64/gccDebug/source/UDP.o  $(Debug_Implicitly_Linked_Objects)
+	ar rcs x64/gccDebug/libxiSock64_d.a x64/gccDebug/source/Endian.o x64/gccDebug/source/NetString.o x64/gccDebug/source/ProtoBase.o x64/gccDebug/source/SmartPointer.o x64/gccDebug/source/Socket.o x64/gccDebug/source/TCP.o x64/gccDebug/source/UDP.o  $(Debug64_Implicitly_Linked_Objects)
 
 # Compiles file ../source/Endian.cpp for the Debug configuration...
 -include x64/gccDebug/source/Endian.d
 x64/gccDebug/source/Endian.o: ../source/Endian.cpp
-	$(CPP_COMPILER) $(Debug_Preprocessor_Definitions) $(Debug_Compiler_Flags) -c ../source/Endian.cpp $(Debug_Include_Path) -o x64/gccDebug/source/Endian.o
-	$(CPP_COMPILER) $(Debug_Preprocessor_Definitions) $(Debug_Compiler_Flags) -MM ../source/Endian.cpp $(Debug_Include_Path) > x64/gccDebug/source/Endian.d
+	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -c ../source/Endian.cpp $(Debug64_Include_Path) -o x64/gccDebug/source/Endian.o
+	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -MM ../source/Endian.cpp $(Debug64_Include_Path) > x64/gccDebug/source/Endian.d
 
 # Compiles file ../source/NetString.cpp for the Debug configuration...
 -include x64/gccDebug/source/NetString.d
 x64/gccDebug/source/NetString.o: ../source/NetString.cpp
-	$(CPP_COMPILER) $(Debug_Preprocessor_Definitions) $(Debug_Compiler_Flags) -c ../source/NetString.cpp $(Debug_Include_Path) -o x64/gccDebug/source/NetString.o
-	$(CPP_COMPILER) $(Debug_Preprocessor_Definitions) $(Debug_Compiler_Flags) -MM ../source/NetString.cpp $(Debug_Include_Path) > x64/gccDebug/source/NetString.d
+	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -c ../source/NetString.cpp $(Debug64_Include_Path) -o x64/gccDebug/source/NetString.o
+	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -MM ../source/NetString.cpp $(Debug64_Include_Path) > x64/gccDebug/source/NetString.d
 
 # Compiles file ../source/ProtoBase.cpp for the Debug configuration...
 -include x64/gccDebug/source/ProtoBase.d
 x64/gccDebug/source/ProtoBase.o: ../source/ProtoBase.cpp
-	$(CPP_COMPILER) $(Debug_Preprocessor_Definitions) $(Debug_Compiler_Flags) -c ../source/ProtoBase.cpp $(Debug_Include_Path) -o x64/gccDebug/source/ProtoBase.o
-	$(CPP_COMPILER) $(Debug_Preprocessor_Definitions) $(Debug_Compiler_Flags) -MM ../source/ProtoBase.cpp $(Debug_Include_Path) > x64/gccDebug/source/ProtoBase.d
+	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -c ../source/ProtoBase.cpp $(Debug64_Include_Path) -o x64/gccDebug/source/ProtoBase.o
+	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -MM ../source/ProtoBase.cpp $(Debug64_Include_Path) > x64/gccDebug/source/ProtoBase.d
 
 # Compiles file ../source/SmartPointer.cpp for the Debug configuration...
 -include x64/gccDebug/source/SmartPointer.d
 x64/gccDebug/source/SmartPointer.o: ../source/SmartPointer.cpp
-	$(CPP_COMPILER) $(Debug_Preprocessor_Definitions) $(Debug_Compiler_Flags) -c ../source/SmartPointer.cpp $(Debug_Include_Path) -o x64/gccDebug/source/SmartPointer.o
-	$(CPP_COMPILER) $(Debug_Preprocessor_Definitions) $(Debug_Compiler_Flags) -MM ../source/SmartPointer.cpp $(Debug_Include_Path) > x64/gccDebug/source/SmartPointer.d
+	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -c ../source/SmartPointer.cpp $(Debug64_Include_Path) -o x64/gccDebug/source/SmartPointer.o
+	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -MM ../source/SmartPointer.cpp $(Debug64_Include_Path) > x64/gccDebug/source/SmartPointer.d
 
 # Compiles file ../source/Socket.cpp for the Debug configuration...
 -include x64/gccDebug/source/Socket.d
 x64/gccDebug/source/Socket.o: ../source/Socket.cpp
-	$(CPP_COMPILER) $(Debug_Preprocessor_Definitions) $(Debug_Compiler_Flags) -c ../source/Socket.cpp $(Debug_Include_Path) -o x64/gccDebug/source/Socket.o
-	$(CPP_COMPILER) $(Debug_Preprocessor_Definitions) $(Debug_Compiler_Flags) -MM ../source/Socket.cpp $(Debug_Include_Path) > x64/gccDebug/source/Socket.d
+	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -c ../source/Socket.cpp $(Debug64_Include_Path) -o x64/gccDebug/source/Socket.o
+	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -MM ../source/Socket.cpp $(Debug64_Include_Path) > x64/gccDebug/source/Socket.d
 
 # Compiles file ../source/TCP.cpp for the Debug configuration...
 -include x64/gccDebug/source/TCP.d
 x64/gccDebug/source/TCP.o: ../source/TCP.cpp
-	$(CPP_COMPILER) $(Debug_Preprocessor_Definitions) $(Debug_Compiler_Flags) -c ../source/TCP.cpp $(Debug_Include_Path) -o x64/gccDebug/source/TCP.o
-	$(CPP_COMPILER) $(Debug_Preprocessor_Definitions) $(Debug_Compiler_Flags) -MM ../source/TCP.cpp $(Debug_Include_Path) > x64/gccDebug/source/TCP.d
+	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -c ../source/TCP.cpp $(Debug64_Include_Path) -o x64/gccDebug/source/TCP.o
+	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -MM ../source/TCP.cpp $(Debug64_Include_Path) > x64/gccDebug/source/TCP.d
 
 # Compiles file ../source/UDP.cpp for the Debug configuration...
 -include x64/gccDebug/source/UDP.d
 x64/gccDebug/source/UDP.o: ../source/UDP.cpp
-	$(CPP_COMPILER) $(Debug_Preprocessor_Definitions) $(Debug_Compiler_Flags) -c ../source/UDP.cpp $(Debug_Include_Path) -o x64/gccDebug/source/UDP.o
-	$(CPP_COMPILER) $(Debug_Preprocessor_Definitions) $(Debug_Compiler_Flags) -MM ../source/UDP.cpp $(Debug_Include_Path) > x64/gccDebug/source/UDP.d
+	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -c ../source/UDP.cpp $(Debug64_Include_Path) -o x64/gccDebug/source/UDP.o
+	$(CPP_COMPILER) $(Debug64_Preprocessor_Definitions) $(Debug64_Compiler_Flags) -MM ../source/UDP.cpp $(Debug64_Include_Path) > x64/gccDebug/source/UDP.d
 
 # Builds the Release configuration...
 .PHONY: Release
@@ -186,49 +186,49 @@ gccRelease/source/UDP.o: ../source/UDP.cpp
 # Builds the Release configuration...
 .PHONY: Release64
 Release: create_folders x64/gccRelease/source/Endian.o x64/gccRelease/source/NetString.o x64/gccRelease/source/ProtoBase.o x64/gccRelease/source/SmartPointer.o x64/gccRelease/source/Socket.o x64/gccRelease/source/TCP.o x64/gccRelease/source/UDP.o 
-	ar rcs x64/gccRelease/libxiSock64.a x64/gccRelease/source/Endian.o x64/gccRelease/source/NetString.o x64/gccRelease/source/ProtoBase.o x64/gccRelease/source/SmartPointer.o x64/gccRelease/source/Socket.o x64/gccRelease/source/TCP.o x64/gccRelease/source/UDP.o  $(Release_Implicitly_Linked_Objects)
+	ar rcs x64/gccRelease/libxiSock64.a x64/gccRelease/source/Endian.o x64/gccRelease/source/NetString.o x64/gccRelease/source/ProtoBase.o x64/gccRelease/source/SmartPointer.o x64/gccRelease/source/Socket.o x64/gccRelease/source/TCP.o x64/gccRelease/source/UDP.o  $(Release64_Implicitly_Linked_Objects)
 
 # Compiles file ../source/Endian.cpp for the Release configuration...
 -include x64/gccRelease/source/Endian.d
 x64/gccRelease/source/Endian.o: ../source/Endian.cpp
-	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -c ../source/Endian.cpp $(Release_Include_Path) -o x64/gccRelease/source/Endian.o
-	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -MM ../source/Endian.cpp $(Release_Include_Path) > x64/gccRelease/source/Endian.d
+	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -c ../source/Endian.cpp $(Release64_Include_Path) -o x64/gccRelease/source/Endian.o
+	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -MM ../source/Endian.cpp $(Release64_Include_Path) > x64/gccRelease/source/Endian.d
 
 # Compiles file ../source/NetString.cpp for the Release configuration...
 -include x64/gccRelease/source/NetString.d
 x64/gccRelease/source/NetString.o: ../source/NetString.cpp
-	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -c ../source/NetString.cpp $(Release_Include_Path) -o x64/gccRelease/source/NetString.o
-	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -MM ../source/NetString.cpp $(Release_Include_Path) > x64/gccRelease/source/NetString.d
+	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -c ../source/NetString.cpp $(Release64_Include_Path) -o x64/gccRelease/source/NetString.o
+	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -MM ../source/NetString.cpp $(Release64_Include_Path) > x64/gccRelease/source/NetString.d
 
 # Compiles file ../source/ProtoBase.cpp for the Release configuration...
 -include x64/gccRelease/source/ProtoBase.d
 x64/gccRelease/source/ProtoBase.o: ../source/ProtoBase.cpp
-	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -c ../source/ProtoBase.cpp $(Release_Include_Path) -o x64/gccRelease/source/ProtoBase.o
-	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -MM ../source/ProtoBase.cpp $(Release_Include_Path) > x64/gccRelease/source/ProtoBase.d
+	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -c ../source/ProtoBase.cpp $(Release64_Include_Path) -o x64/gccRelease/source/ProtoBase.o
+	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -MM ../source/ProtoBase.cpp $(Release64_Include_Path) > x64/gccRelease/source/ProtoBase.d
 
 # Compiles file ../source/SmartPointer.cpp for the Release configuration...
 -include x64/gccRelease/source/SmartPointer.d
 x64/gccRelease/source/SmartPointer.o: ../source/SmartPointer.cpp
-	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -c ../source/SmartPointer.cpp $(Release_Include_Path) -o x64/gccRelease/source/SmartPointer.o
-	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -MM ../source/SmartPointer.cpp $(Release_Include_Path) > x64/gccRelease/source/SmartPointer.d
+	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -c ../source/SmartPointer.cpp $(Release64_Include_Path) -o x64/gccRelease/source/SmartPointer.o
+	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -MM ../source/SmartPointer.cpp $(Release64_Include_Path) > x64/gccRelease/source/SmartPointer.d
 
 # Compiles file ../source/Socket.cpp for the Release configuration...
 -include x64/gccRelease/source/Socket.d
 x64/gccRelease/source/Socket.o: ../source/Socket.cpp
-	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -c ../source/Socket.cpp $(Release_Include_Path) -o x64/gccRelease/source/Socket.o
-	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -MM ../source/Socket.cpp $(Release_Include_Path) > x64/gccRelease/source/Socket.d
+	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -c ../source/Socket.cpp $(Release64_Include_Path) -o x64/gccRelease/source/Socket.o
+	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -MM ../source/Socket.cpp $(Release64_Include_Path) > x64/gccRelease/source/Socket.d
 
 # Compiles file ../source/TCP.cpp for the Release configuration...
 -include x64/gccRelease/source/TCP.d
 x64/gccRelease/source/TCP.o: ../source/TCP.cpp
-	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -c ../source/TCP.cpp $(Release_Include_Path) -o x64/gccRelease/source/TCP.o
-	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -MM ../source/TCP.cpp $(Release_Include_Path) > x64/gccRelease/source/TCP.d
+	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -c ../source/TCP.cpp $(Release64_Include_Path) -o x64/gccRelease/source/TCP.o
+	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -MM ../source/TCP.cpp $(Release64_Include_Path) > x64/gccRelease/source/TCP.d
 
 # Compiles file ../source/UDP.cpp for the Release configuration...
 -include x64/gccRelease/source/UDP.d
 x64/gccRelease/source/UDP.o: ../source/UDP.cpp
-	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -c ../source/UDP.cpp $(Release_Include_Path) -o x64/gccRelease/source/UDP.o
-	$(CPP_COMPILER) $(Release_Preprocessor_Definitions) $(Release_Compiler_Flags) -MM ../source/UDP.cpp $(Release_Include_Path) > x64/gccRelease/source/UDP.d
+	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -c ../source/UDP.cpp $(Release64_Include_Path) -o x64/gccRelease/source/UDP.o
+	$(CPP_COMPILER) $(Release64_Preprocessor_Definitions) $(Release64_Compiler_Flags) -MM ../source/UDP.cpp $(Release64_Include_Path) > x64/gccRelease/source/UDP.d
 
 # Creates the intermediate and output folders for each configuration...
 .PHONY: create_folders
