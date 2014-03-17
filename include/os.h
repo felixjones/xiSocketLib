@@ -18,9 +18,9 @@
 #if defined( __APPLE__ )
 	#include <TargetConditionals.h>
 
-	#if defined( TARGET_OS_MAC )
+	#if defined( TARGET_OS_MAC ) && defined( __LP64__ )
 		#define __OS_X__
-		#define __X64__
+        #define __X64__
 	#endif
 #endif
 

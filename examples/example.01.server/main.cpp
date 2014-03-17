@@ -20,7 +20,7 @@ int main( int argc, char ** argv ) {
 	char buffer[BUFFER_LEN]; // Out buffer for receiving and sending packets
 	bool isRunning = true; // Flag that keeps the while loop running
 
-	xiUDP * const udpSocket = xiUDP::CreateOnPort( SERVER_PORT, xiSocket::PROTO_V6 ); // Open socket on port SERVER_PORT
+	xiUDP * const udpSocket = xiUDP::CreateOnPort( SERVER_PORT ); // Open socket on port SERVER_PORT
 	// udpSocket->SetBlocking( false ); // Optional, set to non-blocking
 
 	if ( udpSocket ) {

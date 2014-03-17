@@ -374,7 +374,12 @@ bool xiSocket::DomainLookupV6( const char * const url, const uint16_t port, xiSo
 	for ( addrinfo * ptr = res; ptr != nullptr; ptr = ptr->ai_next ) {
 		if ( ptr->ai_family == AF_INET ) {
 			const sockaddr_in6 * const sockData = ( const sockaddr_in6 * )ptr->ai_addr; // Set current address
+            
+#if defined( __WIN_API__ )
 			memcpy( &info->address.protocolV6[0], &sockData->sin6_addr.u.Byte[0], sizeof( sockData->sin6_addr.u ) );
+#elif defined( __POSIX__ )
+            memcpy( &info->address.protocolV6[0], &sockData->sin6_addr, sizeof( sockData->sin6_addr ) );
+#endif
 
 			break; // Escape the linked list crawl
 		}

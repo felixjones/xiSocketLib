@@ -120,8 +120,12 @@ byteLen_t xiUDP::ReadIntoBuffer( char * const buffer, const int32_t bufferLength
 #endif
 			senderInfo->port = ( uint16_t )Endian::NetworkToHostUnsigned( sender.v4.sin_port, sizeof( sender.v4.sin_port ) );
 		} else if ( protocolVer == PROTO_V6 ) {
+#if defined( __WIN_API__ )
 			memcpy( &senderInfo->address.protocolV6[0], &sender.v6.sin6_addr.u.Byte[0], sizeof( sender.v6.sin6_addr.u ) );
 			senderInfo->port = ( uint16_t )Endian::NetworkToHostUnsigned( sender.v6.sin6_port, sizeof( sender.v6.sin6_port ) );
+#elif defined( __POSIX__ )
+			memcpy( &senderInfo->address.protocolV6[0], &sender.v6.sin6_addr, sizeof( sender.v6.sin6_addr ) );
+#endif
 		}
 	}
 
@@ -161,8 +165,12 @@ byteLen_t xiUDP::SendBufferToAddress( const char * const buffer, const int32_t b
 #endif
 		target.v4.sin_port = ( uint16_t )Endian::HostToNetworkUnsigned( targetInfo->port, sizeof( targetInfo->port ) );
 	} else if ( protocolVer == PROTO_V6 ) {
+#if defined( __WIN_API__ )
 		memcpy( &target.v6.sin6_addr.u.Byte[0], &targetInfo->address.protocolV6[0], sizeof( target.v6.sin6_addr.u ) );
 		target.v6.sin6_port = ( uint16_t )Endian::HostToNetworkUnsigned( targetInfo->port, sizeof( targetInfo->port ) );
+#elif defined( __POSIX__ )
+		memcpy( &target.v6.sin6_addr, &targetInfo->address.protocolV6[0], sizeof( target.v6.sin6_addr ) );
+#endif
 	}
 
 	const byteLen_t sentBytes = sendto( nativeHandle, buffer, bufferLength, 0, ( sockaddr * )&target, targetLength );
