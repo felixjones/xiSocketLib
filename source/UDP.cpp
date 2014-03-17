@@ -12,7 +12,7 @@
 		#define INVALID_SOCKET  ( -1 )
 	#endif
 #elif defined( __WIN_API__ )
-	#include <WinSock2.h>
+	#include <WS2tcpip.h>
 
 	typedef int socklen_t;
 #endif
@@ -27,8 +27,8 @@ xiUDP::CreateOnPort
 	The port is automatically bound, so it is ready for both send and receive
 ====================
 */
-xiUDP * xiUDP::CreateOnPort( const uint16_t port ) {
-	xiUDP * const self = new xiUDP();
+xiUDP * xiUDP::CreateOnPort( const uint16_t port, const uint8_t protocol ) {
+	xiUDP * const self = new xiUDP( protocol );
 
 	if ( self->status == STATUS_INVALID ) {
 		delete( self );
@@ -36,7 +36,19 @@ xiUDP * xiUDP::CreateOnPort( const uint16_t port ) {
 		return nullptr;
 	}
 
-	if ( !self->BindToPortV4( port ) ) {
+	if ( protocol == PROTO_V4 ) {
+		if ( !self->BindToPortV4( port ) ) {
+			delete( self );
+
+			return nullptr;
+		}
+	} else if ( protocol == PROTO_V6 ) {
+		if ( !self->BindToPortV6( port ) ) {
+			delete( self );
+
+			return nullptr;
+		}
+	} else {
 		delete( self );
 
 		return nullptr;
@@ -56,7 +68,7 @@ xiUDP::xiUDP
 	Called internally
 ====================
 */
-xiUDP::xiUDP() {
+xiUDP::xiUDP( const uint8_t protocol ) : xiProtoBase( protocol ) {
 	status = STATUS_NOT_BOUND;
 	nativeHandle = OpenNativeSocket( SOCK_DGRAM );
 
@@ -86,24 +98,31 @@ xiUDP::ReadIntoBuffer
 ====================
 */
 byteLen_t xiUDP::ReadIntoBuffer( char * const buffer, const int32_t bufferLength, addressInfo_s * const senderInfo ) {
-	sockaddr_in sender;
+	union {
+		sockaddr_in		v4;
+		sockaddr_in6	v6;
+	} sender;
+
 	socklen_t senderLength = ( socklen_t )sizeof( sender );
-    
 	const byteLen_t receivedBytes = recvfrom( nativeHandle, buffer, bufferLength, 0, ( sockaddr * )&sender, &senderLength );
 
 	if ( senderInfo ) {
 		memset( senderInfo, 0, sizeof( *senderInfo ) );
         
+		if ( protocolVer == PROTO_V4 ) {
 #if defined( __WIN_API__ )
-		senderInfo->address.protocolV4[0] = sender.sin_addr.S_un.S_un_b.s_b1;
-		senderInfo->address.protocolV4[1] = sender.sin_addr.S_un.S_un_b.s_b2;
-		senderInfo->address.protocolV4[2] = sender.sin_addr.S_un.S_un_b.s_b3;
-		senderInfo->address.protocolV4[3] = sender.sin_addr.S_un.S_un_b.s_b4;
+			senderInfo->address.protocolV4[0] = sender.v4.sin_addr.S_un.S_un_b.s_b1;
+			senderInfo->address.protocolV4[1] = sender.v4.sin_addr.S_un.S_un_b.s_b2;
+			senderInfo->address.protocolV4[2] = sender.v4.sin_addr.S_un.S_un_b.s_b3;
+			senderInfo->address.protocolV4[3] = sender.v4.sin_addr.S_un.S_un_b.s_b4;
 #elif defined( __POSIX__ )
-        memcpy( &senderInfo->address.protocolV4[0], &sender.sin_addr.s_addr, sizeof( sender.sin_addr.s_addr ) );
+			memcpy( &senderInfo->address.protocolV4[0], &sender.v4.sin_addr.s_addr, sizeof( sender.v4.sin_addr.s_addr ) );
 #endif
-
-		senderInfo->port = ( uint16_t )Endian::NetworkToHostUnsigned( sender.sin_port, sizeof( sender.sin_port ) );
+			senderInfo->port = ( uint16_t )Endian::NetworkToHostUnsigned( sender.v4.sin_port, sizeof( sender.v4.sin_port ) );
+		} else if ( protocolVer == PROTO_V6 ) {
+			memcpy( &senderInfo->address.protocolV6[0], &sender.v6.sin6_addr.u.Byte[0], sizeof( sender.v6.sin6_addr.u ) );
+			senderInfo->port = ( uint16_t )Endian::NetworkToHostUnsigned( sender.v6.sin6_port, sizeof( sender.v6.sin6_port ) );
+		}
 	}
 
 	return receivedBytes;
@@ -123,21 +142,28 @@ byteLen_t xiUDP::SendBufferToAddress( const char * const buffer, const int32_t b
 		return -1; // Could not disable broadcasting
 	}
 
-	sockaddr_in target;
+	union {
+		sockaddr_in		v4;
+		sockaddr_in6	v6;
+	} target;
 	int targetLength = ( int )sizeof( target );
 	memset( &target, 0, sizeof( target ) );
 	
+	if ( protocolVer == PROTO_V4 ) {
 #if defined( __WIN_API__ )
-	target.sin_family = AF_INET;
-	target.sin_addr.S_un.S_un_b.s_b1 = targetInfo->address.protocolV4[0];
-	target.sin_addr.S_un.S_un_b.s_b2 = targetInfo->address.protocolV4[1];
-	target.sin_addr.S_un.S_un_b.s_b3 = targetInfo->address.protocolV4[2];
-	target.sin_addr.S_un.S_un_b.s_b4 = targetInfo->address.protocolV4[3];
+		target.v4.sin_family = AF_INET;
+		target.v4.sin_addr.S_un.S_un_b.s_b1 = targetInfo->address.protocolV4[0];
+		target.v4.sin_addr.S_un.S_un_b.s_b2 = targetInfo->address.protocolV4[1];
+		target.v4.sin_addr.S_un.S_un_b.s_b3 = targetInfo->address.protocolV4[2];
+		target.v4.sin_addr.S_un.S_un_b.s_b4 = targetInfo->address.protocolV4[3];
 #elif defined( __POSIX__ )
-    memcpy( &target.sin_addr.s_addr, &targetInfo->address.protocolV4[0], sizeof( target.sin_addr.s_addr ) );
+		memcpy( &target.v4.sin_addr.s_addr, &targetInfo->address.protocolV4[0], sizeof( target.v4.sin_addr.s_addr ) );
 #endif
-
-	target.sin_port = ( uint16_t )Endian::HostToNetworkUnsigned( targetInfo->port, sizeof( targetInfo->port ) );
+		target.v4.sin_port = ( uint16_t )Endian::HostToNetworkUnsigned( targetInfo->port, sizeof( targetInfo->port ) );
+	} else if ( protocolVer == PROTO_V6 ) {
+		memcpy( &target.v6.sin6_addr.u.Byte[0], &targetInfo->address.protocolV6[0], sizeof( target.v6.sin6_addr.u ) );
+		target.v6.sin6_port = ( uint16_t )Endian::HostToNetworkUnsigned( targetInfo->port, sizeof( targetInfo->port ) );
+	}
 
 	const byteLen_t sentBytes = sendto( nativeHandle, buffer, bufferLength, 0, ( sockaddr * )&target, targetLength );
 
@@ -162,7 +188,14 @@ byteLen_t xiUDP::BroadcastBuffer( const char * const buffer, const int32_t buffe
 	int targetLength = ( int )sizeof( target );
 	memset( &target, 0, sizeof( target ) );
 	
-    target.sin_family = AF_INET;
+	if ( protocolVer == PROTO_V4 ) {
+		target.sin_family = AF_INET;
+	} else if ( protocolVer == PROTO_V6 ) {
+		target.sin_family = AF_INET6;
+	} else {
+		return -1;
+	}
+
     target.sin_addr.s_addr = INADDR_BROADCAST;
 
 	target.sin_port = ( uint16_t )Endian::HostToNetworkUnsigned( port, sizeof( port ) );

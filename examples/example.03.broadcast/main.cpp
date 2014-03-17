@@ -26,11 +26,11 @@ int main( int argc, char ** argv ) {
 	bool tutorial = true; // Display the tutorial
 
 	// We can create the client on any port, but with some operating systems we need to bind a port to be able to listen to it
-	xiUDP * const udpSocket = xiUDP::CreateOnPort( xiSocket::PORT_ANY );
+	xiUDP * const udpSocket = xiUDP::CreateOnPort( xiSocket::PORT_ANY, xiSocket::PROTO_V6 );
 	
 	if ( udpSocket ) {
 		// Notify that we have successfully opened a socket
-		printf( "Client started on port %u\n", udpSocket->GetPortV4() );
+		printf( "Client started on port %u\n", udpSocket->GetPort() );
 	}
 
 	while ( udpSocket && isRunning ) {

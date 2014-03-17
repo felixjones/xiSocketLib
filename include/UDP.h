@@ -15,12 +15,12 @@
 */
 class xiUDP : public xiProtoBase {
 public:
-	static xiUDP *      CreateOnPort( const uint16_t port );
+	static xiUDP *      CreateOnPort( const uint16_t port, const uint8_t protocol = PROTO_V4 );
 	virtual byteLen_t	ReadIntoBuffer( char * const buffer, const int32_t bufferLength, addressInfo_s * const senderInfo = nullptr );
 	virtual byteLen_t	SendBufferToAddress( const char * const buffer, const int32_t bufferLength, const addressInfo_s * const targetInfo );
 	virtual byteLen_t	BroadcastBuffer( const char * const buffer, const int32_t bufferLength, const uint16_t port );
 protected:
-			xiUDP();
+			xiUDP( const uint8_t protocol );
 	virtual	~xiUDP();
 };
 

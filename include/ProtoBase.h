@@ -16,15 +16,17 @@ public:
 	bool		SetBlocking( const bool blocking );
 	void		SetReceiveBufferLength( const int32_t length );
 	void		SetSendBufferLength( const int32_t length );
-	uint16_t	GetPortV4() const;
+	uint16_t	GetPort() const;
 protected:
-                            xiProtoBase();
+                            xiProtoBase( const uint8_t protocol );
 	virtual                 ~xiProtoBase();
 	static socketHandle_t	OpenNativeSocket( const int type );
 	bool					SetBroadcasting( const bool doBroadcast );
 	bool                    BindToPortV4( const uint16_t port );
+	bool                    BindToPortV6( const uint16_t port );
 
-	bool	broadcastAllowed;
+	bool			broadcastAllowed;
+	const uint8_t	protocolVer;
 };
 
 #endif

@@ -59,8 +59,11 @@ public:
 	static byteLen_t	WriteBytes( char * const buffer, const uint8_t * const byteptr, const byteLen_t byteLen );
 	static byteLen_t	WriteString( char * const buffer, const char * const byteptr );
 	static bool			DomainLookupV4( const char * const url, const uint16_t port, xiSocket::addressInfo_s * const info );
-
+	static bool			DomainLookupV6( const char * const url, const uint16_t port, xiSocket::addressInfo_s * const info );
+	
 	static const uint16_t	PORT_ANY;
+	static const uint8_t	PROTO_V4;
+	static const uint8_t	PROTO_V6;
 protected:
 	status_e		status;
 	socketHandle_t	nativeHandle;

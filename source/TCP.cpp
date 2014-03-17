@@ -16,7 +16,7 @@
 		#define INVALID_SOCKET  ( -1 )
 	#endif
 #elif defined( __WIN_API__ )
-	#include <WinSock2.h>
+	#include <WS2tcpip.h>
 
 	typedef int socklen_t;
 #endif
@@ -29,8 +29,8 @@ xiTCPListen::CreateOnPort
 	If it fails, the memory is cleaned up and a nullptr returned
 ====================
 */
-xiTCPListen * xiTCPListen::CreateOnPort( const uint16_t port ) {
-	xiTCPListen * const self = new xiTCPListen();
+xiTCPListen * xiTCPListen::CreateOnPort( const uint16_t port, const uint8_t protocol ) {
+	xiTCPListen * const self = new xiTCPListen( protocol );
 
 	if ( self->status == STATUS_INVALID ) {
 		delete( self );
@@ -38,7 +38,19 @@ xiTCPListen * xiTCPListen::CreateOnPort( const uint16_t port ) {
 		return nullptr;
 	}
 
-	if ( !self->BindToPortV4( port ) ) {
+	if ( protocol == PROTO_V4 ) {
+		if ( !self->BindToPortV4( port ) ) {
+			delete( self );
+
+			return nullptr;
+		}
+	} else if ( protocol == PROTO_V6 ) {
+		if ( !self->BindToPortV6( port ) ) {
+			delete( self );
+
+			return nullptr;
+		}
+	} else {
 		delete( self );
 
 		return nullptr;
@@ -58,7 +70,7 @@ xiTCPListen::xiTCPListen
 	Starts a native TCP socket
 ====================
 */
-xiTCPListen::xiTCPListen() {
+xiTCPListen::xiTCPListen( const uint8_t protocol ) : xiProtoBase( protocol ) {
 	status = STATUS_NOT_BOUND;
 	nativeHandle = OpenNativeSocket( SOCK_STREAM );
 
@@ -90,7 +102,7 @@ xiTCP * xiTCPListen::Listen( addressInfo_s * const senderInfo ) {
 	const int listenStatus = listen( nativeHandle, 1 );
 	if ( !listenStatus ) {
 		// worked, open connection
-		xiTCP * const newConnection = CreateOnSocket( nativeHandle, senderInfo );
+		xiTCP * const newConnection = CreateOnSocket( nativeHandle, senderInfo, protocolVer );
 
 		return newConnection;
 	} else {
@@ -108,8 +120,8 @@ xiTCPListen::CreateOnSocket
 	The native handle is given to the method, as opposed to created by the method
 ====================
 */
-xiTCP * xiTCPListen::CreateOnSocket( const socketHandle_t _nativeHandle, addressInfo_s * const senderInfo ) {
-	xiTCP * const self = new xiTCP();
+xiTCP * xiTCPListen::CreateOnSocket( const socketHandle_t _nativeHandle, addressInfo_s * const senderInfo, const uint8_t protocol ) {
+	xiTCP * const self = new xiTCP( protocol );
 	self->Accept( _nativeHandle, senderInfo );
 
 	if ( self->status == STATUS_INVALID ) {
@@ -132,8 +144,8 @@ xiTCP::ConnectTo
 	It will attempt the connection and only return a valid pointer if the connection is successful
 ====================
 */
-xiTCP * xiTCP::ConnectTo( const addressInfo_s * const listenInfo ) {
-	xiTCP * const self = new xiTCP();
+xiTCP * xiTCP::ConnectTo( const addressInfo_s * const listenInfo, const uint8_t protocol ) {
+	xiTCP * const self = new xiTCP( protocol );
 
 	self->nativeHandle = OpenNativeSocket( SOCK_STREAM );
 	if ( self->nativeHandle == INVALID_SOCKET ) {
@@ -146,7 +158,19 @@ xiTCP * xiTCP::ConnectTo( const addressInfo_s * const listenInfo ) {
 		return nullptr;
 	}
 
-	if ( !self->BindToPortV4( 0 ) ) {
+	if ( protocol == PROTO_V4 ) {
+		if ( !self->BindToPortV4( 0 ) ) {
+			delete( self );
+
+			return nullptr;
+		}
+	} else if ( protocol == PROTO_V6 ) {
+		if ( !self->BindToPortV6( 0 ) ) {
+			delete( self );
+
+			return nullptr;
+		}
+	} else {
 		delete( self );
 
 		return nullptr;
@@ -257,7 +281,7 @@ xiTCP::xiTCP
 	Defaults a TCP connection as not bound
 ====================
 */
-xiTCP::xiTCP() {
+xiTCP::xiTCP( const uint8_t protocol ) : xiProtoBase( protocol ) {
 	status = STATUS_NOT_BOUND;
 }
 

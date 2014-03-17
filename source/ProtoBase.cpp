@@ -16,7 +16,7 @@
 		#define SOCKET_ERROR    ( -1 )
 	#endif
 #elif defined( __WIN_API__ )
-	#include <WinSock2.h>
+	#include <ws2tcpip.h>
 #endif
 
 /*
@@ -28,7 +28,7 @@ xiProtoBase::xiProtoBase
 	Disables UDP broadcasting by default
 ====================
 */
-xiProtoBase::xiProtoBase() {
+xiProtoBase::xiProtoBase( const uint8_t protocol ) : protocolVer( protocol ) {
 	status = STATUS_INVALID;
 	broadcastAllowed = false;
 }
@@ -73,6 +73,29 @@ bool xiProtoBase::BindToPortV4( const uint16_t port ) {
 	socketInfo.sin_family = AF_INET;
 	socketInfo.sin_port = ( uint16_t )Endian::HostToNetwork( port, sizeof( port ) );
 	socketInfo.sin_addr.s_addr = INADDR_ANY;
+
+	if ( bind( nativeHandle, ( sockaddr * )&socketInfo, sizeof( socketInfo ) ) == -1 ) {
+		return false; // Failed
+	}
+
+	status = STATUS_BOUND;
+	return true;
+}
+
+/*
+====================
+xiProtoBase::BindToPortV6
+
+	Calls the operating system's bind-to-any
+====================
+*/
+bool xiProtoBase::BindToPortV6( const uint16_t port ) {
+	sockaddr_in6 socketInfo;
+	memset( &socketInfo, 0, sizeof( socketInfo ) );
+
+	socketInfo.sin6_family = AF_INET6;
+	socketInfo.sin6_port = ( uint16_t )Endian::HostToNetwork( port, sizeof( port ) );
+	socketInfo.sin6_addr = in6addr_any;
 
 	if ( bind( nativeHandle, ( sockaddr * )&socketInfo, sizeof( socketInfo ) ) == -1 ) {
 		return false; // Failed
@@ -171,16 +194,24 @@ void xiProtoBase::SetSendBufferLength( const int32_t length ) {
 
 /*
 ====================
-xiProtoBase::GetPortV4
+xiProtoBase::GetPort
 
 	Returns the bound port of this socket
 ====================
 */
-uint16_t xiProtoBase::GetPortV4() const {
-	sockaddr_in addressInfo;
-	socketLen_t infoLen = sizeof( addressInfo );
-	if ( getsockname( nativeHandle, ( sockaddr * )&addressInfo, &infoLen ) != -1 ) {
-		return ( uint16_t )Endian::NetworkToHost( addressInfo.sin_port, sizeof( addressInfo.sin_port ) );
+uint16_t xiProtoBase::GetPort() const {
+	if ( protocolVer == PROTO_V4 ) {
+		sockaddr_in addressInfo;
+		socketLen_t infoLen = sizeof( addressInfo );
+		if ( getsockname( nativeHandle, ( sockaddr * )&addressInfo, &infoLen ) != -1 ) {
+			return ( uint16_t )Endian::NetworkToHost( addressInfo.sin_port, sizeof( addressInfo.sin_port ) );
+		}
+	} else if ( protocolVer == PROTO_V6 ) {
+		sockaddr_in6 addressInfo;
+		socketLen_t infoLen = sizeof( addressInfo );
+		if ( getsockname( nativeHandle, ( sockaddr * )&addressInfo, &infoLen ) != -1 ) {
+			return ( uint16_t )Endian::NetworkToHost( addressInfo.sin6_port, sizeof( addressInfo.sin6_port ) );
+		}
 	}
 	
 	return 0;
