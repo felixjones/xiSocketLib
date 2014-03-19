@@ -11,12 +11,15 @@
 
 ================================================================================
 */
-class xiProtoBase : public xiSocket {
+class xiProtoBase : protected xiSocket {
 public:
 	bool		SetBlocking( const bool blocking );
 	void		SetReceiveBufferLength( const int32_t length );
 	void		SetSendBufferLength( const int32_t length );
 	uint16_t	GetPort() const;
+
+	xiRefCounter::Grab;
+	xiRefCounter::Drop;
 protected:
                             xiProtoBase( const uint8_t protocol );
 	virtual                 ~xiProtoBase();
