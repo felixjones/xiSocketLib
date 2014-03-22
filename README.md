@@ -21,7 +21,7 @@ UDP Listen Example
 	xiSocket::addressInfo_s sender; // Info to store who sent the bytes
 
 	const int receivedBytes = udpSocket->ReadIntoBuffer( &destination[0], maxLength, &sender );
-	if ( receivedBytes ) {
+	if ( receivedBytes > 0 ) {
 		// destination contains what we received
 		// receivedBytes tells us how many bytes we have
 		// sender now contains info on who sent the packet
@@ -40,6 +40,6 @@ UDP Send Example
 	destination.address.protocolV4[3] = 2;
 
 	const int sentBytes = udpSocket->SendBufferToAddress( &myPacket[0], packetLen, &destination );
-	if ( sentBytes ) {
+	if ( sentBytes > 0 ) {
 		// Packet sent, hopefully it reaches the destination
 	}
