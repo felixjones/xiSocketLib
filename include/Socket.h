@@ -60,7 +60,9 @@ public:
 	static byteLen_t	WriteString( char * const buffer, const char * const byteptr );
 	static bool			DomainLookupV4( const char * const url, const uint16_t port, xiSocket::addressInfo_s * const info );
 	static bool			DomainLookupV6( const char * const url, const uint16_t port, xiSocket::addressInfo_s * const info );
-	
+	static bool			AddressV4( const uint8_t * const bytes, const uint16_t port, xiSocket::addressInfo_s * const info );
+	static bool			AddressFromStringV4( const char * const address, xiSocket::addressInfo_s * const info );
+
 	static const uint16_t	PORT_ANY;
 	static const uint8_t	PROTO_V4;
 	static const uint8_t	PROTO_V6;

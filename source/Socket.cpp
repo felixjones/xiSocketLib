@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "os.h"
 #include "Endian.h"
+#include "NetString.h"
 
 #if defined( __WIN_API__ )
 	#pragma comment( lib, "Ws2_32.lib" )
@@ -23,9 +24,9 @@
 	#include <netdb.h>
 #endif
 
-const uint16_t	xiSocket::PORT_ANY = 0;
-const uint8_t	xiSocket::PROTO_V4 = 4;
-const uint8_t	xiSocket::PROTO_V6 = 6;
+const uint16_t	xiSocket::PORT_ANY = 0x00;
+const uint8_t	xiSocket::PROTO_V4 = IP_V4_BYTE_LEN; // Might as well use the byte length differences as ID nums
+const uint8_t	xiSocket::PROTO_V6 = IP_V6_BYTE_LEN;
 
 /*
 ====================
@@ -388,4 +389,53 @@ bool xiSocket::DomainLookupV6( const char * const url, const uint16_t port, xiSo
     freeaddrinfo( res );
 	
 	return true;
+}
+
+/*
+====================
+xiSocket::AddressV4
+
+	Fills the struct pointed to by info with given IPv4 address
+====================
+*/
+bool xiSocket::AddressV4( const uint8_t * const bytes, const uint16_t port, xiSocket::addressInfo_s * const info ) {
+	if ( !info || !bytes ) {
+		return false;
+	}
+
+	memcpy( &info->address.protocolV4[0], &bytes[0], sizeof( bytes[0] ) * IP_V4_BYTE_LEN );
+	info->port = port;
+
+	return true;
+}
+
+/*
+====================
+xiSocket::AddressFromStringV4
+
+	Fills the struct pointed to by info with IPv4 string
+====================
+*/
+bool xiSocket::AddressFromStringV4( const char * const address, xiSocket::addressInfo_s * const info ) {
+	uint8_t bytes[IP_V4_BYTE_LEN];
+
+	const size_t len = NetString::ToV4Address( address, strlen( address ) + 1, &bytes[0], IP_V4_BYTE_LEN );
+	if ( len == 0 ) {
+		return false;
+	}
+	
+	const char * portPiece = address;
+	while ( *portPiece != ':' && *portPiece != 0 ) {
+		portPiece++;
+	}
+
+	if ( *portPiece == 0 ) {
+		return false;
+	}
+
+	portPiece += 1;
+		
+	const uint16_t port = ( uint16_t )atoi( portPiece );
+
+	return AddressV4( &bytes[0], port, info );
 }
