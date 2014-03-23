@@ -215,8 +215,8 @@ xiSocket::ReadBytes
 	Reads byteLen number of bytes from buffer into byteptr
 ====================
 */
-byteLen_t xiSocket::ReadBytes( const char * const buffer, uint8_t * const byteptr, const byteLen_t byteLen ) {
-	memcpy( &byteptr[0], &buffer[0], ( size_t )byteLen );
+byteLen_t xiSocket::ReadBytes( const char * const buffer, void * const byteptr, const byteLen_t byteLen ) {
+	memcpy( byteptr, &buffer[0], ( size_t )byteLen );
 
 	return byteLen;
 }
@@ -228,8 +228,8 @@ xiSocket::WriteBytes
 	Writes byteLen number of bytes from byteptr into buffer
 ====================
 */
-byteLen_t xiSocket::WriteBytes( char * const buffer, const uint8_t * const byteptr, const byteLen_t byteLen ) {
-	memcpy( &buffer[0], &byteptr[0], ( size_t )byteLen );
+byteLen_t xiSocket::WriteBytes( char * const buffer, const void * const byteptr, const byteLen_t byteLen ) {
+	memcpy( &buffer[0], byteptr, ( size_t )byteLen );
 
 	return byteLen;
 }
