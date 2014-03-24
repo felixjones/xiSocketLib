@@ -398,12 +398,15 @@ xiSocket::AddressV4
 	Fills the struct pointed to by info with given IPv4 address
 ====================
 */
-bool xiSocket::AddressV4( const uint8_t * const bytes, const uint16_t port, xiSocket::addressInfo_s * const info ) {
-	if ( !info || !bytes ) {
+bool xiSocket::AddressV4( const uint8_t bA, const uint8_t bB, const uint8_t bC, const uint8_t bD, const uint16_t port, xiSocket::addressInfo_s * const info ) {
+	if ( info == nullptr ) {
 		return false;
 	}
 
-	memcpy( &info->address.protocolV4[0], &bytes[0], sizeof( bytes[0] ) * IP_V4_BYTE_LEN );
+	info->address.protocolV4[0] = bA;
+	info->address.protocolV4[1] = bB;
+	info->address.protocolV4[2] = bC;
+	info->address.protocolV4[3] = bD;
 	info->port = port;
 
 	return true;
@@ -437,5 +440,5 @@ bool xiSocket::AddressFromStringV4( const char * const address, xiSocket::addres
 		
 	const uint16_t port = ( uint16_t )atoi( portPiece );
 
-	return AddressV4( &bytes[0], port, info );
+	return AddressV4( bytes[0], bytes[1], bytes[2], bytes[3], port, info );
 }
