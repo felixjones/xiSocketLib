@@ -33,11 +33,7 @@ UDP Send Example
 	const int packetLen = strlen( myPacket ) + 1; // Length of message (Plus null term, just in case)
 
 	xiSocket::addressInfo_s destination; // Packet destination
-	destination.port = 12345; // Destination port
-	destination.address.protocolV4[0] = 192; // Destination IPv4 address
-	destination.address.protocolV4[1] = 168;
-	destination.address.protocolV4[2] = 0;
-	destination.address.protocolV4[3] = 2;
+	xiSocket::AddressV4( 192, 168, 0, 2, 12345, &destination ); // Set destination IPv4 address and port to 192.168.0.2:12345
 
 	const int sentBytes = udpSocket->SendBufferToAddress( &myPacket[0], packetLen, &destination );
 	if ( sentBytes > 0 ) {
