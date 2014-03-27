@@ -16,14 +16,14 @@ UDP Create Example
 
 UDP Listen Example
 
-	char destination[800]; // Where the received bytes go
+	char receivedBytes[800]; // Where the received bytes go
 	const int maxLength = 800; // How many bytes we can accept
 	xiSocket::addressInfo_s sender; // Info to store who sent the bytes
 
-	const int receivedBytes = udpSocket->ReadIntoBuffer( &destination[0], maxLength, &sender );
+	const int receivedLen = udpSocket->ReadIntoBuffer( &receivedBytes[0], maxLength, &sender );
 	if ( receivedBytes > 0 ) {
-		// destination contains what we received
-		// receivedBytes tells us how many bytes we have
+		// receivedBytes contains what we received
+		// receivedLen tells us how many bytes we have
 		// sender now contains info on who sent the packet
 	}
 
