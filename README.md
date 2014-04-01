@@ -16,8 +16,8 @@ UDP Create Example
 
 UDP Listen Example
 
-	char receivedBytes[800]; // Where the received bytes go
-	const int maxLength = 800; // How many bytes we can accept
+	char receivedBytes[500]; // Where the received bytes go
+	const int maxLength = 500; // How many bytes we can accept
 	xiSocket::addressInfo_s sender; // Info to store who sent the bytes
 
 	const int receivedLen = udpSocket->ReadIntoBuffer( &receivedBytes[0], maxLength, &sender );
