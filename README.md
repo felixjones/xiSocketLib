@@ -9,7 +9,7 @@ UDP Create Example
 	#include <UDP.h>
 	
 	// Create UDP socket (Will automatically bind to any IPv4 port
-	xiUDP * const udpSocket = xiUDP::CreateOnPort( 12345 );
+	xiUDP * const udpSocket = xiUDP::CreateOnPort( 12345, xiSocket::PROTO_V4 );
 	if ( udpSocket ) {
 		// Socket is created on port 12345 successfully
 	}
